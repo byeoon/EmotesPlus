@@ -29,7 +29,13 @@ const EmotesPlus: Plugin = {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               res.props?.children.push(<EmotesSheet Emotesprops={EmotesSheet} />)
+               console.log(instance);
+               const EmotesTab = instance.props.children.find(child => child.props);
+               if (EmotesTab) {
+                  const button = <button>Your Button</button>; 
+                  EmotesTab.props.children.push(button);
+                  instance.forceUpdate();
+               }
                console.log("[EmotesPlus] Component Thing");
                return res
             })
