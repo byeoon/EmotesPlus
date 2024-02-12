@@ -6,6 +6,7 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import EmotesSheet from './components/EmotesSheet';
 import findInReactTree from "enmity/utilities/findInReactTree";
+import {Button, Text } from 'enmity/components';
 
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
 const Patcher = create('EmotesPlus');
@@ -29,19 +30,15 @@ const EmotesPlus: Plugin = {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
-            
-            component.then((instance) => {
-               const emotePopup = findInReactTree(res, (o: any) => {
-                  return o?.screens?.MessageEmojiActionSheet;
-                })?.screens?.MessageEmojiActionSheet;
+            Patcher.after(res["type"], "render", (_, args, res) => {
+               console.log(args)
+               console.log(res)
+               res.props.children.push(<Button>hello there </Button>)
+             })
 
-                if (emotePopup) {
-                  console.log("[EmotesPlus] WOW!!!!!!!!!!!!!!!!");
-                }
+            component.then((instance) => {
                console.log(instance);
                console.log("[EmotesPlus] Instance component ran.");
-               console.log(res);
-               return res
             })
          } 
       })
