@@ -6,6 +6,7 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import EmotesSheet from './components/EmotesSheet';
 import EmotesPlusInterfaceThing from './components/EmotesSheet';
+import EmotesProps from './components/EmotesSheet';
 
 
 // const Typing = getByProps('startTyping');
@@ -31,11 +32,20 @@ const EmotesPlus: Plugin = {
       console.log("[EmotesPlus] Hello World!");
       Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], res) => {
          if (sheet === "MessageEmojiActionSheet") {
-            console.log("[EmotesPlus] Emoji Sheet clicked on.");
+            console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               res.props?.children.push(<EmotesSheet EmotesPlusMenuInterface={EmotesPlusInterfaceThing} />)
-               console.log("[EmotesPlus] Component Thing");
+
+               const EmoteTab = res?.props?.children?.props?.children?.props?.children
+               const unpatchEmotesTab = Patcher.after(EmoteTab, "type", (_, [{ EmotesProps }], res) => {
+                  React.useEffect(() => {
+                     return () => unpatchEmotesTab()
+                  }, [])
+
+                  res.props?.children.push(<EmotesSheet Emotesprops={EmotesProps} />)
+                  console.log("[EmotesPlus] Component Thing");
+                  return res
+               })
             })
          }
 

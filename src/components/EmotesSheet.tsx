@@ -5,8 +5,9 @@ import { getIDByName } from 'enmity/api/assets';
 
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
 
-interface EmotesPlusMenuInterface {
-  emoteLink: string;
+interface EmotesProps{
+  emoteLink: string
+  type: string
 }
 
 const { ThemeColorMap } = ColorMap;
@@ -16,7 +17,7 @@ const styles = StyleSheet.createThemedStyleSheet({
     backgroundColor: ThemeColorMap.BACKGROUND_MOBILE_SECONDARY,
     flex: 1,
   },
-  cardStyle: {
+  divider: {
     backgroundColor: ThemeColorMap.BACKGROUND_MOBILE_PRIMARY,
     color: ThemeColorMap.TEXT_NORMAL
   },
@@ -30,16 +31,22 @@ const styles = StyleSheet.createThemedStyleSheet({
   },
   close: {
     color: ThemeColorMap.HEADER_PRIMARY
+  },
+
+  button: { 
+    marginTop: 16
   }
+
 });
 
-export default function EmotesPlusInterfaceThing({ EmotesPlusMenuInterface }) {
+export default function EmotesPlusInterfaceThing({ Emotesprops }) {
 const buttons = [
   { text: "Test Button", callback: console.log("woah") }
 ]
 
 return (
   <>
+  <FormDivider style={styles.divider} />
     {buttons.map(({ text, callback }) =>
       <Button
         color='brand'
