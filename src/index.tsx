@@ -6,7 +6,7 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import EmotesSheet from './components/EmotesSheet';
 import findInReactTree from "enmity/utilities/findInReactTree";
-import {Button, Text } from 'enmity/components';
+import { Button, Text } from 'enmity/components';
 
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
 const Patcher = create('EmotesPlus');
@@ -22,7 +22,7 @@ function testToast() {
 const EmotesPlus: Plugin = {
    ...manifest,
 
-   
+
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
@@ -31,16 +31,17 @@ const EmotesPlus: Plugin = {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-         console.log(instance);
-         const sheetComponent = instance.default();
-         const sheetBody = sheetComponent.props.children;
-         const button = <button>Your Button</button>;
-         const updatedSheetBody = React.cloneElement(sheetBody, null, [button, ...sheetBody.props.children]);
-         const updatedComponent = React.cloneElement(sheetComponent, null, updatedSheetBody);
-         console.log("[EmotesPlus] Instance component ran.");
-         return updatedComponent;
+               const originalRender = instance.default;
+               console.log("[EmotesPlus] Instance: " + instance);
+               const sheetComponent = instance.default();
+               const sheetBody = sheetComponent.props.children;
+               const button = <button>Button</button>;
+               const updatedSheetBody = React.cloneElement(sheetBody, null, [button, ...sheetBody.props.children]);
+               const updatedComponent = React.cloneElement(sheetComponent, null, updatedSheetBody);
+               console.log("[EmotesPlus] Instance component ran.");
+               return updatedComponent;
             })
-         } 
+         }
       })
    },
 
