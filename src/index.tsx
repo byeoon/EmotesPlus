@@ -34,7 +34,6 @@ const EmotesPlus: Plugin = {
             component.then((instance) => {
                const unpatchInstance = Patcher.after(instance, "default", (_, [{ Emotesprops }], res) => {
                   unpatchInstance()
-                  if (Emotesprops.type !== 'customEmoji') return res
 
                const EmoteTab = res?.props?.children?.props?.children?.props?.children
                const unpatchEmotesTab = Patcher.after(EmoteTab, "type", (_, [{ Emotesprops }], res) => {
