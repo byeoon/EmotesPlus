@@ -30,11 +30,10 @@ const EmotesPlus: Plugin = {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
-            Patcher.after(res["type"], "render", (_, args, res) => {
-               console.log(args)
-               console.log(res)
-               res.props.children.push(<Button>hello there </Button>)
-             })
+            Patcher.after(res, 'default', (_, component, res) => {
+               res.props.children.push(<Text>hello there</Text>);
+               console.log("[EmotesPlus] no FUCKING way.");
+             });
 
             component.then((instance) => {
                console.log(instance);
