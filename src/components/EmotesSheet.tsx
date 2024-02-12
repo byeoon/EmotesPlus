@@ -1,8 +1,6 @@
 import { FormRow, FormSwitch, FormDivider, View, Button, Text } from 'enmity/components';
 import { ColorMap, Navigation, NavigationNative, NavigationStack, React, StyleSheet, Toasts, Clipboard } from "enmity/metro/common";
 import { getByProps, bulk, filters } from 'enmity/metro';
-import { getIDByName } from 'enmity/api/assets';
-
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
 
 interface  EmotesProps {
@@ -31,9 +29,6 @@ const styles = StyleSheet.createThemedStyleSheet({
   headerTitleContainer: {
     color: ThemeColorMap.HEADER_PRIMARY,
   },
-  close: {
-    color: ThemeColorMap.HEADER_PRIMARY
-  },
 
   button: { 
     marginTop: 16
@@ -41,7 +36,7 @@ const styles = StyleSheet.createThemedStyleSheet({
 
 })
 
-export default function EmotesPlusInterfaceThing({ Emotesprops }) {
+export default function EmotesSheet({ Emotesprops }) {
 const buttons = [
   { text: "Test Button", callback: console.log(Emotesprops.emoteLink) }
 ]

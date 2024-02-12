@@ -6,52 +6,35 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import EmotesSheet from './components/EmotesSheet';
 
-// const Typing = getByProps('startTyping');
+
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
-
-
 const Patcher = create('EmotesPlus');
-
 
 function testToast() {
    Dialog.show({
       title: "EmotesPlus",
-      body: "This is a dialog thingy",
+      body: "This is a dialog box to indicate that emote clicking worked.",
       confirmText: "Dismiss"
-  })
+   })
 }
 
 const EmotesPlus: Plugin = {
    ...manifest,
-   
+
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], _res) => {
+      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], res) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               const unpatchInstance = Patcher.after(instance, "default", (_, [{ Emotesprops }], res) => {
-                  unpatchInstance()
-
-               const EmoteTab = res?.props?.children?.props?.children?.props?.children
-               const unpatchEmotesTab = Patcher.after(EmoteTab, "type", (_, [{ Emotesprops }], res) => {
-                  React.useEffect(() => {
-                     return () => unpatchEmotesTab()
-                  }, [])
-
-                  res.props?.children.push(<EmotesSheet Emotesprops={Emotesprops} />)
-                  console.log("[EmotesPlus] Component Thing");
-                  return res
-               })
+               res.props?.children.push(<EmotesSheet Emotesprops={EmotesSheet} />)
+               console.log("[EmotesPlus] Component Thing");
+               return res
             })
-         })
-      }
-   })
-      
-      //  Patcher.instead(Typing, 'startTyping', () => { });
-      //  Patcher.instead(Typing, 'stopTyping', () => { });
+         } 
+      })
    },
 
    onStop() {
