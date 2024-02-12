@@ -31,12 +31,14 @@ const EmotesPlus: Plugin = {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               Patcher.after(res, 'default', (_, component, res) => {
-                  res.props.children.push(<Text>hello there</Text>);
-                  console.log("[EmotesPlus] no FUCKING way.");
-                });
-               console.log(instance);
-               console.log("[EmotesPlus] Instance component ran.");
+         console.log(instance);
+         const sheetComponent = instance.default();
+         const sheetBody = sheetComponent.props.children;
+         const button = <button>Your Button</button>;
+         const updatedSheetBody = React.cloneElement(sheetBody, null, [button, ...sheetBody.props.children]);
+         const updatedComponent = React.cloneElement(sheetComponent, null, updatedSheetBody);
+         console.log("[EmotesPlus] Instance component ran.");
+         return updatedComponent;
             })
          } 
       })
