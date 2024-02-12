@@ -5,7 +5,7 @@
 ---
 
 <div align='center'>
-   <h3>Plugin template</h3>
+   <h3>EmotesPlus / Emotes+</h3>
 
    Template for Enmity plugins.<br />
    Use `npm install` to install the required modules and use `npm run build` to build your plugin.

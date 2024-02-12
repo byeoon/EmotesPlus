@@ -1,7 +1,7 @@
 {
-   "name": "EmoteTest",
+   "name": "EmotesPlus",
    "version": "1.0.0",
-   "description": "Test emote thing, will officialize name shortly",
+   "description": "Better mobile emote management.",
    "authors": [
       {
          "name": "byron",
