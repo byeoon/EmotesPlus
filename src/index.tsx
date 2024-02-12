@@ -6,31 +6,19 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 
 // const Typing = getByProps('startTyping');
-const Clipboard = getByProps('setString');
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
 
 
 const Patcher = create('EmotesPlus');
-
-
-function testToast() {
-   Toasts.open({
-      content: "This is a toast for helpful debugging."
-   })
-}
-
 const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      testToast();
       Patcher.before(SheetOpen, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("If this is the emoji sheet (hopefully)");
-            testToast();
-            component.then((instance: any) => {
-               testToast();
+            component.then((instance) => {
                console.log("wow it works?");
             })
          }
