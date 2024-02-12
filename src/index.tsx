@@ -24,6 +24,7 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
+      try {
       Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], _res) => {
          console.log("[EmotesPlus] Current sheet: " + sheet);
          if(sheet === "MessageEmojiActionSheet") {
@@ -38,7 +39,12 @@ const EmotesPlus: Plugin = {
                })
             })
          }
-      })          
+      })
+   }
+   catch (e)
+   {
+      console.log("fuck you " + e.message + "  " + e)
+   }          
    },
 
    onStop() {
