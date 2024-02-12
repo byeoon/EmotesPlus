@@ -24,27 +24,21 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-
-      const unpatch = Patcher.before(SheetOpen, 'openLazy', (_, [component, sheet]) => {
-         if (sheet !== 'MessageEmojiActionSheet') return;
-         
-         const orig = component;
-         component = async (...args) => {
-           const res = await orig(...args);
-           
-           try {
-             Patcher.after(res, 'default', (_, args, res) => {
-               res.props.children.push(<Text>hello hello hello</Text>);
-             });
-       
-             unpatch();
-           } catch (e) {
-             console.error(`Failed to patch ${sheet}`, e.message);
-           }
-       
-           return res;
-         } 
-       });            
+      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], _res) => {
+         console.log("[EmotesPlus] Current sheet: " + sheet);
+         if(sheet === "MessageEmojiActionSheet") {
+            component.then((instance) => {
+               Patcher.after(instance, "default", (_, [ { emojiNode }], res) => {
+                  const te = res?.props?.children?.props?.children?.props?.children 
+                  Patcher.after(te, "type", (_, args, res) => {
+                     console.log(args)
+                     console.log(res)
+                     return res
+                  })
+               })
+            })
+         }
+      })          
    },
 
    onStop() {
