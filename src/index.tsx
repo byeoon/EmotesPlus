@@ -14,7 +14,7 @@ function testToast() {
    Dialog.show({
       title: "EmotesPlus",
       body: "This is a dialog box to indicate that emote clicking worked.",
-      confirmText: "Dismiss"
+      confirmText: "OK Lmao"
    })
 }
 
@@ -30,13 +30,11 @@ const EmotesPlus: Plugin = {
             testToast();
             component.then((instance) => {
                console.log(instance);
-               const EmotesTab = instance.props.children.find(child => child.props);
-               if (EmotesTab) {
                   const button = <button>Your Button</button>; 
-                  EmotesTab.props.children.push(button);
+                  instance.props.children.push(button);
                   instance.forceUpdate();
-               }
-               console.log("[EmotesPlus] Component Thing");
+               console.log("[EmotesPlus] Instance component ran.");
+               console.log(res);
                return res
             })
          } 
