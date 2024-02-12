@@ -15,7 +15,7 @@ function testToast() {
    Dialog.show({
       title: "EmotesPlus",
       body: "This is a dialog box to indicate that emote clicking worked.",
-      confirmText: "OK Lmao"
+      confirmText: "Close"
    })
 }
 
@@ -26,7 +26,7 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], res) => {
+      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], _res) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();

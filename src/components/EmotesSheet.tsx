@@ -38,7 +38,7 @@ const styles = StyleSheet.createThemedStyleSheet({
 
 export default function EmotesSheet({ Emotesprops }) {
 const buttons = [
-  { text: "Test Button", callback: console.log(Emotesprops.emoteLink) }
+  { text: "Test Button", callback: console.log("hello") }
 ]
 
 return (
