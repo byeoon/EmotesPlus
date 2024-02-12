@@ -23,10 +23,11 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      testToast()
+      testToast();
       Patcher.before(SheetOpen, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("If this is the emoji sheet (hopefully)");
+            testToast();
             component.then((instance) => {
                console.log("wow it works?");
             })
