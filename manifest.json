@@ -1,11 +1,11 @@
 {
-   "name": "SilentTyping",
+   "name": "EmoteTest",
    "version": "1.0.0",
-   "description": "Silences your typing indicator.",
+   "description": "Test emote thing, will officialize name shortly",
    "authors": [
       {
-         "name": "eternal",
-         "id": "263689920210534400"
+         "name": "byron",
+         "id": "0-iforgor"
       }
    ]
 }
