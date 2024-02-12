@@ -35,9 +35,9 @@ const EmotesPlus: Plugin = {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               const unpatchInstance = Patcher.after(instance, "default", (_, [{ EmotesProps }], res) => {
+               const unpatchInstance = Patcher.after(instance, "default", (_, [{ Emotesprops }], res) => {
                   unpatchInstance()
-                  if (EmotesProps.type !== 'customEmoji') return res
+                  if (Emotesprops.type !== 'customEmoji') return res
 
                const EmoteTab = res?.props?.children?.props?.children?.props?.children
                const unpatchEmotesTab = Patcher.after(EmoteTab, "type", (_, [{ EmotesProps }], res) => {
