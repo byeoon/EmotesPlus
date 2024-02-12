@@ -7,15 +7,20 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 
 const Typing = getByProps('startTyping');
-const Lmao = getByProps('sendClydeError');
-const Patcher = create('emotesplus');
-// 100% aware its still the template but untouched, im not even home im just setting up the base
+const Clipboard = getByProps('setString');
+
+const Patcher = create('EmotesPlus');
+
 const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      Patcher.instead(Typing, 'startTyping', () => { });
-      Patcher.instead(Typing, 'stopTyping', () => { });
+      console.log("[EmotesPlus] Hello World!");
+      Patcher.before() {
+
+      }
+    //  Patcher.instead(Typing, 'startTyping', () => { });
+    //  Patcher.instead(Typing, 'stopTyping', () => { });
    },
 
    onStop() {
