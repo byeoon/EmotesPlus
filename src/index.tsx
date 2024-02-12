@@ -15,7 +15,7 @@ function testToast() {
    Dialog.show({
       title: "EmotesPlus",
       body: "This is a dialog box to indicate that emote clicking worked.",
-      confirmText: "Close"
+      confirmText: "Ok."
    })
 }
 
