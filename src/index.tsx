@@ -5,9 +5,6 @@ import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import EmotesSheet from './components/EmotesSheet';
-import EmotesPlusInterfaceThing from './components/EmotesSheet';
-import EmotesProps from './components/EmotesSheet';
-
 
 // const Typing = getByProps('startTyping');
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
@@ -30,7 +27,7 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], res) => {
+      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], _res) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
@@ -40,12 +37,12 @@ const EmotesPlus: Plugin = {
                   if (Emotesprops.type !== 'customEmoji') return res
 
                const EmoteTab = res?.props?.children?.props?.children?.props?.children
-               const unpatchEmotesTab = Patcher.after(EmoteTab, "type", (_, [{ EmotesProps }], res) => {
+               const unpatchEmotesTab = Patcher.after(EmoteTab, "type", (_, [{ Emotesprops }], res) => {
                   React.useEffect(() => {
                      return () => unpatchEmotesTab()
                   }, [])
 
-                  res.props?.children.push(<EmotesSheet Emotesprops={EmotesProps} />)
+                  res.props?.children.push(<EmotesSheet Emotesprops={Emotesprops} />)
                   console.log("[EmotesPlus] Component Thing");
                   return res
                })

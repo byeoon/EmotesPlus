@@ -5,7 +5,7 @@ import { getIDByName } from 'enmity/api/assets';
 
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
 
-interface EmotesProps{
+interface  EmotesProps {
   emoteLink: string
   type: string
 }
@@ -43,7 +43,7 @@ const styles = StyleSheet.createThemedStyleSheet({
 
 export default function EmotesPlusInterfaceThing({ Emotesprops }) {
 const buttons = [
-  { text: "Test Button", callback: console.log("woah") }
+  { text: "Test Button", callback: console.log(Emotesprops.emoteLink) }
 ]
 
 return (
