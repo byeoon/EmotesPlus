@@ -19,7 +19,9 @@ const styles = StyleSheet.createThemedStyleSheet({
   },
   divider: {
     backgroundColor: ThemeColorMap.BACKGROUND_MOBILE_PRIMARY,
-    color: ThemeColorMap.TEXT_NORMAL
+    color: ThemeColorMap.TEXT_NORMAL,
+    marginLeft: 0,
+		marginTop: 16
   },
   header: {
     backgroundColor: ThemeColorMap.BACKGROUND_MOBILE_SECONDARY,
@@ -37,7 +39,7 @@ const styles = StyleSheet.createThemedStyleSheet({
     marginTop: 16
   }
 
-});
+})
 
 export default function EmotesPlusInterfaceThing({ Emotesprops }) {
 const buttons = [
