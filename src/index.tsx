@@ -4,6 +4,9 @@ import { getByProps, bulk, filters } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
 import Settings from './components/Settings';
+import EmotesSheet from './components/EmotesSheet';
+import EmotesPlusInterfaceThing from './components/EmotesSheet';
+
 
 // const Typing = getByProps('startTyping');
 const SheetOpen = getByProps("openLazy", "hideActionSheet");
@@ -26,12 +29,12 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      testToast();
-      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet]) => {
+      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], res) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emoji Sheet clicked on.");
             testToast();
             component.then((instance) => {
+               res.props?.children.push(<EmotesSheet EmotesPlusMenuInterface={EmotesPlusInterfaceThing} />)
                console.log("[EmotesPlus] Component Thing");
             })
          }
