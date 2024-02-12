@@ -13,23 +13,26 @@ const Patcher = create('EmotesPlus');
 
 
 function testToast() {
-   Toasts.open({
-      content: "This is a toast for helpful debugging."
-   })
+   Dialog.show({
+      title: "EmotesPlus",
+      body: "This is a dialog thingy",
+      confirmText: "Dismiss"
+  })
 }
 
 const EmotesPlus: Plugin = {
    ...manifest,
+   
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
       testToast();
       Patcher.before(SheetOpen, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
-            console.log("If this is the emoji sheet (hopefully)");
+            console.log("[EmotesPlus] Emoji Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               console.log("wow it works?");
+               console.log("[EmotesPlus] Component Thing");
             })
          }
 
