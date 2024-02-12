@@ -26,21 +26,21 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], _res) => {
+      Patcher.before(SheetOpen, "openLazy", (_, [component, sheet], res) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked on.");
             testToast();
             component.then((instance) => {
-               const originalRender = instance.default;
-               console.log("[EmotesPlus] Instance: " + instance);
-               const sheetComponent = instance.default();
-               const sheetBody = sheetComponent.props.children;
-               const button = <button>Button</button>;
-               const updatedSheetBody = React.cloneElement(sheetBody, null, [button, ...sheetBody.props.children]);
-               const updatedComponent = React.cloneElement(sheetComponent, null, updatedSheetBody);
+               const originalRender = instance.default; // Assuming instance is a function
+               instance.default = function() {
+                  const result = originalRender.apply(this, arguments); // Calling original render function
+                  const newButton = <button>Your Button</button>;
+                  const updatedResult = React.cloneElement(result, null, [result.props.children, newButton]);
+                  return updatedResult;
+               };
                console.log("[EmotesPlus] Instance component ran.");
-               return updatedComponent;
-            })
+               return instance;
+            });
          }
       })
    },
