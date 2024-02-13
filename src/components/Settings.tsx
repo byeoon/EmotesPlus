@@ -34,8 +34,8 @@ export default ({ settings }: SettingsProps) => {
       tab: {
          fontSize: 14,
          paddingTop: 20,
-         paddingLeft: 10,
-         paddingRight: 20,
+         paddingLeft: 20,
+         paddingRight: 25,
          color: Constants.ThemeColorMap.HEADER_SECONDARY,
       }
    })
