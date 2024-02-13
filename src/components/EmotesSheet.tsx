@@ -1,10 +1,10 @@
-import { FormRow, FormSwitch, FormDivider, View, Button, Text } from 'enmity/components';
+import { FormDivider, View, Button, Text } from 'enmity/components';
 import { ColorMap, Navigation, NavigationNative, NavigationStack, React, StyleSheet, Toasts, Clipboard } from "enmity/metro/common";
 import { getByProps, bulk, filters } from 'enmity/metro';
-const SheetOpen = getByProps("openLazy", "hideActionSheet");
+const ActionSheet = getByProps("openLazy", "hideActionSheet");
 
-interface  EmotesProps {
-  emoteLink: string
+interface  EmoteProps {
+  emoteURL: string
   type: string
 }
 
@@ -36,23 +36,16 @@ const styles = StyleSheet.createThemedStyleSheet({
 
 })
 
-export default function EmotesSheet({ Emotesprops }) {
-const buttons = [
-  { text: "Test Button", callback: console.log("hello") }
-]
-
-return (
-  <>
-  <FormDivider style={styles.divider} />
-    {buttons.map(({ text, callback }) =>
-      <Button
-        color='brand'
-        text={text}
-        size='small'
-        onPress={callback}
-        style={styles.button}
-      />
-    )}
-  </>
-)
+export default function EmotesSheet({ emoteProps }) {
+  return (
+      <>
+          <Button
+              color='brand'
+              text='Copy Emote URL'
+              size='small'
+              onPress={() => console.log('remember how i said do this really slowly')}
+              style={styles.button}
+          />
+      </>
+  )
 }
