@@ -1,10 +1,10 @@
-import { FormRow, FormSwitch, FormDivider, View, Button, Text } from 'enmity/components';
+import { FormDivider, View, Button, Text } from 'enmity/components';
 import { ColorMap, Navigation, NavigationNative, NavigationStack, React, StyleSheet, Toasts, Clipboard } from "enmity/metro/common";
 import { getByProps, bulk, filters } from 'enmity/metro';
-const SheetOpen = getByProps("openLazy", "hideActionSheet");
+const ActionSheet = getByProps("openLazy", "hideActionSheet");
 
 interface  EmoteProps {
-  emoteLink: string
+  emoteURL: string
   type: string
 }
 
