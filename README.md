@@ -12,7 +12,7 @@
 
    ## Installation / Setup
 
-   Not yet, still working on it.
+    Download: https://raw.githubusercontent.com/byeoon/EmotesPlus/main/dist/EmotesPlus.js   
 </div>
 
 ---
