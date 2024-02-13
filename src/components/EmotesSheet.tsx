@@ -37,22 +37,15 @@ const styles = StyleSheet.createThemedStyleSheet({
 })
 
 export default function EmotesSheet({ Emotesprops }) {
-const buttons = [
-  { text: "Test Button", callback: console.log("hello") }
-]
-
-return (
-  <>
-  <FormDivider style={styles.divider} />
-    {buttons.map(({ text, callback }) =>
-      <Button
-        color='brand'
-        text={text}
-        size='small'
-        onPress={callback}
-        style={styles.button}
-      />
-    )}
-  </>
-)
+  return (
+      <>
+          <Button
+              color='brand'
+              text='copy link'
+              size='small'
+              onPress={() => console.log('remember how i said do this really slowly')}
+              style={styles.button}
+          />
+      </>
+  )
 }
