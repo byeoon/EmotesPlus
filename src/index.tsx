@@ -11,10 +11,10 @@ import { Button, Text } from 'enmity/components';
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
 const Patcher = create('EmotesPlus');
 
-function testToast() {
+function showToast(text) {
    Dialog.show({
       title: "EmotesPlus",
-      body: "Click worked.",
+      body: text,
       confirmText: "Ok."
    })
 }
@@ -24,30 +24,17 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      try {
-      Patcher.before(ActionSheet, "openLazy", (_, [component, sheet], _res) => {
-         console.log("[EmotesPlus] Current sheet: " + sheet);
-         if(sheet === "MessageEmojiActionSheet") {
+      Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
+         if (sheet === "MessageEmojiActionSheet") {
+            console.log("[EmotesPlus] Emotes Sheet clicked on.");
+            
             component.then((instance) => {
-               Patcher.after(instance, "default", (_, [ { emojiNode }], res) => {
-                  const te = res?.props?.children?.props?.children?.props?.children
-                  Patcher.after(te, "type", (_, [{ emojiNode }], res) => {
-                     findInReactTree(res, (node) => console.log(node))
-                     if (true) {
-                        res.props?.children.push(<EmotesSheet Emotesprops={emojiNode} />)
-                     }
-
-                     return res
-                  })
-               })
+               showToast("You clicked on the emote sheet.");
+               console.log(instance);
+               console.log("[EmotesPlus] Instance component ran.");
             })
-         }
+         } 
       })
-   }
-   catch (e)
-   {
-      console.log("fuck you " + e.message + "  " + e)
-   }          
    },
 
    onStop() {
