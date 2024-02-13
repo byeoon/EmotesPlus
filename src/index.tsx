@@ -2,10 +2,12 @@ import { Plugin, registerPlugin } from 'enmity/managers/plugins';
 import { React, Dialog, Toasts } from 'enmity/metro/common';
 import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
+import { Button } from "enmity/components";
 import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import EmotesSheet from './components/EmotesSheet';
 import findInReactTree from 'enmity/utilities/findInReactTree';
+
 
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
 const Patcher = create('EmotesPlus');
@@ -36,7 +38,7 @@ const EmotesPlus: Plugin = {
               // const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
-               res.props?.children.push(<EmotesSheet emoteProps={component} />)
+               res.props?.children.push(<Button text="hi" />)
                return res
             })
          } 
