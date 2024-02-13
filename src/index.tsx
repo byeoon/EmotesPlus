@@ -35,8 +35,8 @@ const EmotesPlus: Plugin = {
             component.then((instance) => {
               // const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
-               showDialog("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
+               res.props?.children.push(<EmotesSheet emoteProps={component} />)
             })
          } 
       })

@@ -23,6 +23,20 @@ export default ({ settings }: SettingsProps) => {
          fontSize: 12,
          paddingLeft: 45,
          color: Constants.ThemeColorMap.HEADER_SECONDARY,
+      },
+      br: {
+         fontSize: 0,
+         paddingTop: 20,
+         paddingLeft: 20,
+         paddingRight: 30,
+         color: Constants.ThemeColorMap.HEADER_SECONDARY,
+      },
+      tab: {
+         fontSize: 14,
+         paddingTop: 20,
+         paddingLeft: 10,
+         paddingRight: 20,
+         color: Constants.ThemeColorMap.HEADER_SECONDARY,
       }
    })
    return (
@@ -31,6 +45,9 @@ export default ({ settings }: SettingsProps) => {
             <Text style={styles.pluginTitle}>EmotesPlus</Text>
             <Text style={styles.pluginAuthor}>Developed by byron</Text>
             <Text style={styles.pluginAuthor}>Version 1.0.0</Text>
+            <Text style={styles.br}>Scuffed af line break</Text>
+            
+            <Text style={styles.tab}>Settings</Text>
          </View>
 
          <FormRow
