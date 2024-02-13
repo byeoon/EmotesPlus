@@ -41,7 +41,7 @@ export default function EmotesSheet({ Emotesprops }) {
       <>
           <Button
               color='brand'
-              text='copy link'
+              text='Copy Emote URL'
               size='small'
               onPress={() => console.log('remember how i said do this really slowly')}
               style={styles.button}

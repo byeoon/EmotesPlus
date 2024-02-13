@@ -21,7 +21,7 @@ export default ({ settings }: SettingsProps) => {
       },
       pluginAuthor: {
          fontSize: 12,
-         paddingLeft: 50,
+         paddingLeft: 45,
          color: Constants.ThemeColorMap.HEADER_SECONDARY,
       }
    })
@@ -29,8 +29,8 @@ export default ({ settings }: SettingsProps) => {
       <ScrollView>
          <View style={styles.title}>
             <Text style={styles.pluginTitle}>EmotesPlus</Text>
-            <Text style={styles.pluginAuthor}>developed by byron</Text>
-            <Text style={styles.pluginAuthor}>v1.0.0</Text>
+            <Text style={styles.pluginAuthor}>Developed by byron</Text>
+            <Text style={styles.pluginAuthor}>Version 1.0.0</Text>
          </View>
 
          <FormRow
