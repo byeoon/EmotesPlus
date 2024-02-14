@@ -36,7 +36,7 @@ const EmotesPlus: Plugin = {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked.");
             component.then((instance) => {
-               const unpatch = Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
+               const unpatch = Patcher.after(instance, "default", (_, __, res) => {
                   React.useEffect(() => unpatch(), [])
             //  const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
