@@ -31,7 +31,7 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      console.log("[EmotesPlus] Hello World!");
+      console.log("[EmotesPlus I WANNA FUCKING DIE.] Hello World!");
 
       Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
@@ -46,8 +46,8 @@ const EmotesPlus: Plugin = {
                   if (true) {
                      console.log("IT DID A THING!!!!!");
                      res.props?.children.push(<EmotesSheet emojiNode={EmotesSheet} />)
-                     return res
                   }
+                  return res
                })
             })
          }
