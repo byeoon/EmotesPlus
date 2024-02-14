@@ -3,6 +3,11 @@ import { ColorMap, Navigation, NavigationNative, NavigationStack, React, StyleSh
 import { getByProps, bulk, filters } from 'enmity/metro';
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
 
+interface EmotesSheet {
+  emoteURL: string
+  type: string
+}
+
 const { ThemeColorMap } = ColorMap;
 const styles = StyleSheet.createThemedStyleSheet({
   container: {
