@@ -41,15 +41,15 @@ const EmotesPlus: Plugin = {
               const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
-              Patcher.after(allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment, "type", (_, [{ emojiNode }], res) => {
+             Patcher.after(allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment, "type", (_, [{ emojiNode }], res) => {
                   findInReactTree(res  , (node) => console.log(node))
                   if (true) {
-                     console.log("IT DID A THING!!!!!");
+                     console.log("[EmotesPlus] IT DID A THING!!!!!");
                      res.props?.children[res.props.children - 1].push(<EmotesSheet emojiNode={emojiNode} />)
-                     return res
                   }
+                  return res
                })
-            })
+           })
          })
       }})
    },
