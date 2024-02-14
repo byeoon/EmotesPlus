@@ -31,13 +31,13 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      console.log("[EmotesPlus BARACK OBAMA] Hello World!");
+      console.log("[EmotesPlus BARACK OBAMA?] Hello World!");
 
       Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked.");
             component.then((instance) => {
-               const unpatch = Patcher.after(instance, "default", (_, [{emojiNode}], res) => {
+               const unpatch = Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
                   React.useEffect(() => unpatch(), [])
                   //    const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                   showToast("You clicked on the emote tab.");
