@@ -45,7 +45,8 @@ const EmotesPlus: Plugin = {
                   findInReactTree(res, (node) => console.log(node))
                   if (true) {
                      console.log("IT DID A THING!!!!!");
-                     res.props?.children[res.props.children.length - 1].push(<EmotesSheet emojiNode={emojiNode} />)
+                     showToast("omg.");
+                     res.props.children[res.props.children.length].push(<EmotesSheet emojiNode={emojiNode} />)
                   }
                   return res
                })
