@@ -37,22 +37,16 @@ const EmotesPlus: Plugin = {
             console.log("[EmotesPlus] Emotes Sheet clicked.");
             component.then((instance) => {
                const unpatch = Patcher.after(instance, "default", (_, __, res) => {
-                  React.useEffect(() => () => { 
-                     unpatch() 
-                  }, [])
-              const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
+                  React.useEffect(() => unpatch(), [])
+          //    const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
-               Patcher.after(allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment, "type", (_, [{ emojiNode }], res) => {
-                  console.log("IT DID A THING!!!!! but before the real part");
                   findInReactTree(res, (node) => console.log(node))
                   if (true) {
                      console.log("IT DID A THING!!!!!");
-                     res.props?.children.push(<EmotesSheet emojiNode={emojiNode} />)
+                     res.props?.children.push(<EmotesSheet emojiNode={EmotesSheet} />)
+                     return res
                   }
-
-                  return res
-            })
             })
          })
       }})
