@@ -38,17 +38,15 @@ const EmotesPlus: Plugin = {
             component.then((instance) => {
                const unpatch = Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
                   React.useEffect(() => unpatch(), [])
-              const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
-              Patcher.after(allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment, "type", (_, [{ emojiNode }], res) => {
+            //  const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
                   findInReactTree(res, (node) => console.log(node))
                   if (true) {
                      console.log("IT DID A THING!!!!!");
-                     res.props?.children.push(<EmotesSheet emojiNode={emojiNode} />)
+                     res.props?.children.push(<Button text='Copy Emote URL'/>)
                      return res
                   }
-               })
             })
          })
       }})
