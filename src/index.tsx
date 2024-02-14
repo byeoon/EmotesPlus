@@ -9,6 +9,7 @@ import EmotesSheet from './components/EmotesSheet';
 import findInReactTree from 'enmity/utilities/findInReactTree';
 
 
+
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
 const Patcher = create('EmotesPlus');
 
@@ -36,8 +37,8 @@ const EmotesPlus: Plugin = {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked.");
             component.then((instance) => {
-              Patcher.after(instance, "default", (_, __, res) => {
-            //      React.useEffect(() => unpatch(), [])
+             const unpatch = Patcher.after(instance, "default", (_, [{emojiNode}], res) => {
+                 React.useEffect(() => unpatch(), [])
               const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
