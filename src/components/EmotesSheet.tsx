@@ -3,7 +3,7 @@ import { ColorMap, Navigation, NavigationNative, NavigationStack, React, StyleSh
 import { getByProps, bulk, filters } from 'enmity/metro';
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
 
-interface  EmoteProps {
+interface  EmotesSheet {
   emoteURL: string
   type: string
 }
@@ -36,7 +36,7 @@ const styles = StyleSheet.createThemedStyleSheet({
 
 })
 
-export default function EmotesSheet({ emoteProps }) {
+export default function EmotesSheet({ emojiNode }) {
   return (
       <>
           <Button

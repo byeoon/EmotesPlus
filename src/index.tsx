@@ -31,18 +31,31 @@ const EmotesPlus: Plugin = {
 
    onStart() {
       console.log("[EmotesPlus] Hello World!");
-      Patcher.before(ActionSheet, "openLazy", (_, [component, sheet], res) => {
+
+      Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
             console.log("[EmotesPlus] Emotes Sheet clicked.");
             component.then((instance) => {
-              // const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
+               const unpatch = Patcher.after(instance, "default", (_, __, res) => {
+                  React.useEffect(() => () => { 
+                     unpatch() 
+                  }, [])
+              const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
                showToast("You clicked on the emote tab.");
                console.log("[EmotesPlus] Instance: " + instance);
-               res.props?.children.push(<Button text="hi" />)
-               return res
+               Patcher.after(allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment, "type", (_, [{ emojiNode }], res) => {
+                  console.log("IT DID A THING!!!!! but before the real part");
+                  findInReactTree(res, (node) => console.log(node))
+                  if (true) {
+                     console.log("IT DID A THING!!!!!");
+                     res.props?.children.push(<EmotesSheet emojiNode={emojiNode} />)
+                  }
+
+                  return res
             })
-         } 
-      })
+            })
+         })
+      }})
    },
 
    onStop() {
