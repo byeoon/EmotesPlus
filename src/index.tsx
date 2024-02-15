@@ -11,6 +11,7 @@ import findInReactTree from 'enmity/utilities/findInReactTree';
 
 
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
+const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
 
 function showDialog(text) {
@@ -31,7 +32,7 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      console.log("[EmotesPlus getting longer] Hello World!");
+      console.log("[EmotesPlus I DID A THING] Hello World!");
 
       Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
@@ -46,9 +47,10 @@ const EmotesPlus: Plugin = {
                   if (true) {
                      console.log("[EmotesPlus] IT DID A THING!!!!!");
                      
-                     showToast("omg.");
-                     console.log("[EmotesPlus] a thing" + emojiNode.alt);
-                     res.props.children.push(<EmotesSheet emojiNode={emojiNode} />)
+                     showToast("Copied emote url to clipboard.");
+                     console.log("[EmotesPlus] a thing" + emojiNode.src);
+                     Clipboard.setString(emojiNode.src);
+                     instance.props.children.push(<EmotesSheet emojiNode={emojiNode} />)
                      showToast("what the FACK.");
                     
                   }
