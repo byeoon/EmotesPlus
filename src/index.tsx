@@ -46,13 +46,13 @@ const EmotesPlus: Plugin = {
                      console.log("[EmotesPlus] a thing: " + emojiNode.src);
                      Clipboard.setString(emojiNode.src);
                      const updatedChildren = [
-                        ...(res.props.children || []),
+                        ...(res.props?.children || []),
                         <Button key="copyEmoteUrlButton" text='Copy Emote URL'/>
                     ];
-
                      res.props.children = updatedChildren;
 
                      showToast("what the FACK.");
+                     console.log("[EmotesPlus] " + res.props);
                     
                   }
                   return res
