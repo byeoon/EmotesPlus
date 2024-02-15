@@ -9,7 +9,6 @@ import EmotesSheet from './components/EmotesSheet';
 import findInReactTree from 'enmity/utilities/findInReactTree';
 
 
-
 const ActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
@@ -39,7 +38,6 @@ const EmotesPlus: Plugin = {
             component.then((instance) => {
                const unpatch = Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
                   React.useEffect(() => unpatch(), [])
-                  console.log("[EmotesPlus] Instance: " + instance);
                   findInReactTree(res, (node) => console.log(node))
                   if (true) {
                      console.log("[EmotesPlus] IT DID A THING!!!!!");
@@ -47,7 +45,13 @@ const EmotesPlus: Plugin = {
                      showToast("Copied emote url to clipboard.");
                      console.log("[EmotesPlus] a thing: " + emojiNode.src);
                      Clipboard.setString(emojiNode.src);
-                     res.props?.children.push(<Button text='Copy Emote URL'/>)
+                     const updatedChildren = [
+                        ...res.props.children,
+                        <Button key="copyEmoteUrlButton" text='Copy Emote URL'/>
+                    ];
+
+                     res.props.children = updatedChildren;
+
                      showToast("what the FACK.");
                     
                   }
