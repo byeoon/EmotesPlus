@@ -47,7 +47,7 @@ const EmotesPlus: Plugin = {
                      showToast("Copied emote url to clipboard.");
                      console.log("[EmotesPlus] a thing: " + emojiNode.src);
                      Clipboard.setString(emojiNode.src);
-                     res.props[0].push(<Button text='Copy Emote URL'/>)
+                     res.props.push(<Button text='Copy Emote URL'/>)
                      showToast("what the FACK.");
                     
                   }
