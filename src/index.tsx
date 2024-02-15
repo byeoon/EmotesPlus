@@ -32,7 +32,7 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      console.log("[EmotesPlus I DID A THING] Hello World!");
+      console.log("[EmotesPlus YAAAAAAAAAAA] Hello World!");
 
       Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
@@ -48,9 +48,9 @@ const EmotesPlus: Plugin = {
                      console.log("[EmotesPlus] IT DID A THING!!!!!");
                      
                      showToast("Copied emote url to clipboard.");
-                     console.log("[EmotesPlus] a thing" + emojiNode.src);
+                     console.log("[EmotesPlus] a thing: " + emojiNode.src);
                      Clipboard.setString(emojiNode.src);
-                     instance.props.children.push(<EmotesSheet emojiNode={emojiNode} />)
+                     res?.props?.children?.props?.children?.props?.children.push(<EmotesSheet emojiNode={emojiNode} />)
                      showToast("what the FACK.");
                     
                   }
