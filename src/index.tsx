@@ -32,16 +32,13 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      console.log("[EmotesPlus yaayayyayayaayya] Hello World!");
+      console.log("[EmotesPlus] Hello World!");
 
       Patcher.before(ActionSheet, "openLazy", (_, [component, sheet]) => {
          if (sheet === "MessageEmojiActionSheet") {
-            console.log("[EmotesPlus] Emotes Sheet clicked.");
             component.then((instance) => {
                const unpatch = Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
                   React.useEffect(() => unpatch(), [])
-                  //    const allegedyThisIsTheEmoteTabITookALittleResearchFromPluginDevelopment = res?.props?.children?.props?.children?.props?.children
-                  showToast("You clicked on the emote tab.");
                   console.log("[EmotesPlus] Instance: " + instance);
                   findInReactTree(res, (node) => console.log(node))
                   if (true) {
@@ -50,7 +47,7 @@ const EmotesPlus: Plugin = {
                      showToast("Copied emote url to clipboard.");
                      console.log("[EmotesPlus] a thing: " + emojiNode.src);
                      Clipboard.setString(emojiNode.src);
-                     res.push(<Button text='Copy Emote URL'/>)
+                     res.props.children[1].push(<Button text='Copy Emote URL'/>)
                      showToast("what the FACK.");
                     
                   }
