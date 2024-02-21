@@ -47,10 +47,10 @@ const EmotesPlus: Plugin = {
                      Clipboard.setString(emojiNode.src);
                      (res.props.children ??=[]).push(<Button key="copyEmoteUrlButton" text='Copy Emote URL'/>); // thank u eternal
  
-                     showToast("what the FACK????.");
+                     showToast("UI push should have worked but it never does lmao.");
                      console.log("[EmotesPlus] " + res.props);
-                     return res
                   }
+                  return res
                 
                })
             })
