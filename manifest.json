@@ -1,6 +1,6 @@
 {
    "name": "EmotesPlus",
-   "version": "1.0.2",
+   "version": "1.0.3",
    "description": "Enhanced mobile emote management.",
    "authors": [
       {
@@ -11,6 +11,6 @@
    "color": "#00007d",
    "sourceUrl": "https://github.com/byeoon/EmotesPlus",
    "changelog": [
-      "Actually made the plugin"
+      "Initial development"
    ]
 }
