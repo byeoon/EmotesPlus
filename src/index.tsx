@@ -51,7 +51,7 @@ const EmotesPlus: Plugin = {
                         Clipboard.setString(emojiNode.src);
                          res?.props?.children?.push(
                              <TouchableOpacity onPress={() => console.log('you pressed it')}>
-                                 <Text style={{ color: 'white' }}>Press me! {emojiNode}</Text>
+                                 <Text style={{ color: 'white' }}>Press me!</Text>
                              </TouchableOpacity>
                          );
                      })
