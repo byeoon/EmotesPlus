@@ -47,10 +47,11 @@ const EmotesPlus: Plugin = {
                      const details = findInReactTree(res, x => x?.type && x?.props?.emojiNode && x?.props?.nonce);
                      if (!details) return;
      
-                     Patcher.after(details, 'type', (_, __, res) => {
+                     Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {
+                        Clipboard.setString(emojiNode.src);
                          res?.props?.children?.push(
                              <TouchableOpacity onPress={() => console.log('you pressed it')}>
-                                 <Text>Press me!</Text>
+                                 <Text style={{ color: 'white' }}>Press me! {emojiNode}</Text>
                              </TouchableOpacity>
                          );
                      })
