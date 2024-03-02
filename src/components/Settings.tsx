@@ -44,7 +44,7 @@ export default ({ settings }: SettingsProps) => {
          <View style={styles.title}>
             <Text style={styles.pluginTitle}>EmotesPlus</Text>
             <Text style={styles.pluginAuthor}>Developed by byron</Text>
-            <Text style={styles.pluginAuthor}>Version 1.0.0.1</Text>
+            <Text style={styles.pluginAuthor}>Version 1.0.0.2</Text>
             <Text style={styles.br}> </Text>
 
             <Text style={styles.tab}>Settings</Text>

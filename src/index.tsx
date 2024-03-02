@@ -63,17 +63,6 @@ const EmotesPlus: Plugin = {
                              Clipboard.setString("(" + emojiNode.alt + ")" + "[" + emojiNode.src + "]");
                            }}
                          />
-
-
-                           <Button
-                           color={Button.Colors.BRAND}
-                           text={'Print Emote Info to Console'}
-                           size={Button.Sizes.SMALL}
-                           onPress={() => {
-                             showToast("Check the debug console!");
-                             Clipboard.setString(emojiNode);
-                           }}
-                         />
                            </FormDivider>
                          
                          );
