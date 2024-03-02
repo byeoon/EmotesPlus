@@ -7,10 +7,6 @@
 ## Installation / Setup
 
 Download: https://raw.githubusercontent.com/byeoon/EmotesPlus/main/dist/EmotesPlus.js   
-
-
-## Features
-
 </div>
 
 ---
