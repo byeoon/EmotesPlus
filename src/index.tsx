@@ -42,7 +42,7 @@ const EmotesPlus: Plugin = {
                        
                        
                          res?.props?.children?.push(
-                           <FormDivider>
+                           
       
                             <Button
                            color={Button.Colors.BRAND}
@@ -52,7 +52,7 @@ const EmotesPlus: Plugin = {
                              showToast("Copied Emote URL to clipboard!");
                              Clipboard.setString(emojiNode.src);
                            }}
-                         />
+                         />,
 
                            <Button
                            color={Button.Colors.BRAND}
@@ -63,7 +63,7 @@ const EmotesPlus: Plugin = {
                              Clipboard.setString("(" + emojiNode.alt + ")" + "[" + emojiNode.src + "]");
                            }}
                          />
-                           </FormDivider>
+                          
                          
                          );
                      })
