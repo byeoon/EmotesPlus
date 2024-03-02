@@ -56,6 +56,17 @@ const EmotesPlus: Plugin = {
 
                            <Button
                            color={Button.Colors.BRAND}
+                           text={'Copy Emote URL as Hyperlink'}
+                           size={Button.Sizes.SMALL}
+                           onPress={() => {
+                             showToast("Copied Emote URL to clipboard! (Please note some servers have [[HYPERLINKS BLOCKED]].");
+                             Clipboard.setString("(" + emojiNode.alt + ")" + "[" + emojiNode.src + "]");
+                           }}
+                         />
+
+
+                           <Button
+                           color={Button.Colors.BRAND}
                            text={'Print Emote Info to Console'}
                            size={Button.Sizes.SMALL}
                            onPress={() => {
