@@ -60,7 +60,7 @@ const EmotesPlus: Plugin = {
                            size={Button.Sizes.SMALL}
                            onPress={() => {
                              showToast("Copied Emote URL to clipboard! (Please note some servers have [[HYPERLINKS BLOCKED]].");
-                             Clipboard.setString("(" + emojiNode.alt + ")" + "[" + emojiNode.src + "]");
+                             Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")");
                            }}
                          />
                           
