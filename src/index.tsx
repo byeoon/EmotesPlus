@@ -11,7 +11,8 @@ import findInReactTree from 'enmity/utilities/findInReactTree';
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
-const { default: Button } = getByProps('ButtonColors', 'ButtonStyles')
+const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
+const { RedesignCompat } = getByProps('RedesignCompat')
 
 function showDialog(text) {
    Dialog.show({
@@ -56,6 +57,7 @@ const EmotesPlus: Plugin = {
                            size={Button.Sizes.SMALL}
                            onPress={() => {
                              console.log('wow you clicked me');
+                             showToast("wow you clicked me 2");
                              Clipboard.setString(emojiNode.src);
                            }}
                          />
