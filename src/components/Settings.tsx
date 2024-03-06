@@ -45,7 +45,7 @@ export default ({ settings }: SettingsProps) => {
          <View style={styles.title}>
             <Text style={styles.pluginTitle}>EmotesPlus</Text>
             <Text style={styles.pluginAuthor}>Developed by byron</Text>
-            <Text style={styles.pluginAuthor}>Version ${manifest.version}</Text>
+            <Text style={styles.pluginAuthor}>Version {manifest.version}</Text>
             <Text style={styles.br}> </Text>
 
             <Text style={styles.tab}>Settings</Text>
@@ -55,12 +55,12 @@ export default ({ settings }: SettingsProps) => {
             label='Example Setting'
             trailing={
                <FormSwitch
-                  value={settings.get('example', true)}
-                  onValueChange={() => settings.toggle('example', true)}
+                  value={settings.get('newUISupport', true)}
+                  onValueChange={() => settings.toggle('newUISupport', true)}
                />
             }
          />
-         <Text style={styles.pluginAuthor}>Changelog: ${manifest.changelog}</Text>
+         <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>
 
       </ScrollView>
    )

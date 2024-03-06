@@ -39,6 +39,10 @@ const EmotesPlus: Plugin = {
      
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                          res?.props?.children?.push(
+                           <Text
+                           color={Text.Colors.BRAND}
+                           text={'Emotes+'}
+                           />,
                   
                             <Button
                            color={Button.Colors.BRAND}
@@ -51,12 +55,17 @@ const EmotesPlus: Plugin = {
                            }}
                          />,
 
+                         <Text
+                         text={'  '}
+                         />,
+
+
                            <Button
                            color={Button.Colors.BRAND}
                            text={'Copy Emote URL as Hyperlink'}
                            size={Button.Sizes.SMALL}
                            onPress={() => {
-                             showToast("Copied Emote Hyperlink to clipboard! (Please note some servers have [[HYPERLINKS BLOCKED]].");
+                             showToast("Copied Emote Hyperlink to clipboard! (Some servers may block the use of hyperlinked emotes.)");
                              Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")");
                              LazyActionSheet.hideActionSheet();
                            }}
