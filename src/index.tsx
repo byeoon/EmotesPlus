@@ -1,5 +1,5 @@
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
-import { React, Dialog, Toasts } from 'enmity/metro/common';
+import { React, Toasts } from 'enmity/metro/common';
 import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import { Text, TouchableOpacity, Image, FormDivider } from "enmity/components";
