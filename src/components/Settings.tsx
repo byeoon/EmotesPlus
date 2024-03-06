@@ -50,7 +50,7 @@ export default ({ settings }: SettingsProps) => {
         <Text style={styles.pluginAuthor}>Version {manifest.version}</Text>
         <Text style={styles.br}> </Text>
 
-        <Text style={styles.tab}>Settings</Text>
+      <Text style={styles.tab}>Settings</Text>
       </View>
       <FormRow
         label="Example Setting"
@@ -62,7 +62,8 @@ export default ({ settings }: SettingsProps) => {
         }
       />,
 
-      <Text text={"  "} />,
+      <Text style={styles.br}> </Text>
+
       <Button
         color={Button.Colors.BRAND}
         text={"Copy Download Link"}
@@ -73,8 +74,9 @@ export default ({ settings }: SettingsProps) => {
           );
         }}
       />,
-      
-      <Text text={"  "} />,
+
+      <Text style={styles.br}> </Text>
+
       <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>
     </ScrollView>
   );
