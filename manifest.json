@@ -11,7 +11,7 @@
    "color": "#00007d",
    "sourceUrl": "https://github.com/byeoon/EmotesPlus",
    "changelog": [
-      "1.0.1: Optimized code, added toast icon, fixed bug where actionsheet would not close on click, settings now have changelog and version fixed",
+      "1.0.1: Optimized code, added toast icon, fixed bug where actionsheet would not close on click, settings now have changelog and version fixed \n",
       "1.0.2: Removed lengthy text when copying hyperlink to clipboard, fixed bug where some elements would have $ before them, added text titles and better spacing."
    ]
 }

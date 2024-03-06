@@ -40,7 +40,6 @@ const EmotesPlus: Plugin = {
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                          res?.props?.children?.push(
                            <Text
-                           color={Text.Colors.BRAND}
                            text={'Emotes+'}
                            />,
                   
