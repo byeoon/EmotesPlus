@@ -75,6 +75,57 @@ const EmotesPlus: Plugin = {
              })
          })
      })
+
+     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
+      if (key !== 'MessageStickerActionSheet') return;
+      unpatchStickerLazy();
+      component.then(instance => {
+          const unpatchInstance = Patcher.after(instance, 'default', (_, __, res) => {
+           //   unpatchInstance();
+              const unpatchType = Patcher.after(res, 'type', (_, __, res) => {
+                  React.useEffect(() => () => void unpatchType(), []);
+                  const details = findInReactTree(res, x => x?.type && x?.props?.stickerNode && x?.props?.nonce);
+                  if (!details) return;
+  
+                  Patcher.after(details, 'type', (_, [{ stickerNode }], res) => {    
+                      res?.props?.children?.push(
+                        <Text
+                        text={'Emotes+'}
+                        />,
+               
+                         <Button
+                        color={Button.Colors.BRAND}
+                        text={'Copy Sticker URL'}
+                        size={Button.Sizes.SMALL}
+                        onPress={() => {
+                          showToast("Copied Emote URL to clipboard!");
+                          Clipboard.setString(stickerNode.src);
+                          LazyActionSheet.hideActionSheet();
+                        }}
+                      />,
+
+                      <Text
+                      text={'  '}
+                      />,
+
+
+                        <Button
+                        color={Button.Colors.BRAND}
+                        text={'Copy Emote URL as Hyperlink'}
+                        size={Button.Sizes.SMALL}
+                        onPress={() => {
+                          showToast("Copied Emote Hyperlink to clipboard! (Some servers may block the use of hyperlinked emotes.)");
+                          Clipboard.setString("[" + stickerNode.alt + "]" + "(" + stickerNode.src + ")");
+                          LazyActionSheet.hideActionSheet();
+                        }}
+                      />
+                      );
+                  })
+              })
+          })
+      })
+  })
+  
    },
 
    onStop() {

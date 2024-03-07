@@ -62,8 +62,6 @@ export default ({ settings }: SettingsProps) => {
         }
       />,
 
-      <Text style={styles.br}> </Text>
-
       <Button
         color={Button.Colors.BRAND}
         text={"Copy Download Link"}
@@ -74,8 +72,6 @@ export default ({ settings }: SettingsProps) => {
           );
         }}
       />,
-
-      <Text style={styles.br}> </Text>
 
       <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>
     </ScrollView>
