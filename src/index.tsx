@@ -86,7 +86,6 @@ const EmotesPlus: Plugin = {
                         <Text
                         text={'Emotes+'}
                         />,
-               
                          <Button
                         color={Button.Colors.BRAND}
                         text={'Copy Sticker URL'}
