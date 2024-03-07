@@ -1,6 +1,6 @@
 {
    "name": "EmotesPlus",
-   "version": "1.0.2.1",
+   "version": "1.0.3",
    "description": "Enhanced mobile emote management.",
    "authors": [
       {
@@ -12,6 +12,7 @@
    "sourceUrl": "https://github.com/byeoon/EmotesPlus",
    "changelog": [
       "\n 1.0.1: Optimized code, added toast icon, fixed bug where actionsheet would not close on click, settings now have changelog and version fixed \n",
-      "1.0.2: Removed lengthy text when copying hyperlink to clipboard, fixed bug where some elements would have $ before them, added text titles and better spacing."
+      "1.0.2: Removed lengthy text when copying hyperlink to clipboard, fixed bug where some elements would have $ before them, added text titles and better spacing. \n", 
+      "1:0.3: De-cluttered the emote menu, you can now decide if you want to copy as hyperlink or emote using Settings."
    ]
 }

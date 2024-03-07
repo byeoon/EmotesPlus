@@ -4,10 +4,10 @@ import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import { Text, TouchableOpacity, Image, FormDivider } from "enmity/components";
 import manifest from '../manifest.json';
-import Settings from './components/Settings';
+import {get, set} from "enmity/api/settings";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
-
+import Settings from './components/Settings';
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
@@ -49,25 +49,16 @@ const EmotesPlus: Plugin = {
                            size={Button.Sizes.SMALL}
                            onPress={() => {
                              showToast("Copied Emote URL to clipboard!");
-                             Clipboard.setString(emojiNode.src);
+                             if(get(manifest.name, "copyAsHyperlink", false))
+                             { Clipboard.setString(emojiNode.src); }
+                             else
+                             {  Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")"); } 
                              LazyActionSheet.hideActionSheet();
                            }}
                          />,
 
                          <Text
                          text={'  '}
-                         />,
-
-
-                           <Button
-                           color={Button.Colors.BRAND}
-                           text={'Copy Emote URL as Hyperlink'}
-                           size={Button.Sizes.SMALL}
-                           onPress={() => {
-                             showToast("Copied Emote Hyperlink to clipboard! (Some servers may block the use of hyperlinked emotes.)");
-                             Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")");
-                             LazyActionSheet.hideActionSheet();
-                           }}
                          />
                          );
                      })
@@ -75,6 +66,9 @@ const EmotesPlus: Plugin = {
              })
          })
      })
+
+     // STICKER ACTIONSHEET
+     
 
      const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
       if (key !== 'MessageStickerActionSheet') return;
@@ -106,18 +100,6 @@ const EmotesPlus: Plugin = {
 
                       <Text
                       text={'  '}
-                      />,
-
-
-                        <Button
-                        color={Button.Colors.BRAND}
-                        text={'Copy Emote URL as Hyperlink'}
-                        size={Button.Sizes.SMALL}
-                        onPress={() => {
-                          showToast("Copied Emote Hyperlink to clipboard! (Some servers may block the use of hyperlinked emotes.)");
-                          Clipboard.setString("[" + stickerNode.alt + "]" + "(" + stickerNode.src + ")");
-                          LazyActionSheet.hideActionSheet();
-                        }}
                       />
                       );
                   })

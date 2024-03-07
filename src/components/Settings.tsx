@@ -53,14 +53,27 @@ export default ({ settings }: SettingsProps) => {
       <Text style={styles.tab}>Settings</Text>
       </View>
       <FormRow
-        label="Example Setting"
+        label="New UI Support (WIP)"
         trailing={
           <FormSwitch
-            value={settings.get("newUISupport", true)}
+            value={settings.get("newUISupport", false)}
             onValueChange={() => settings.toggle("newUISupport", true)}
           />
         }
       />
+       <FormRow
+        label="Copy Emotes as a Hyperlink"
+        trailing={
+          <FormSwitch
+            value={settings.get("copyAsHyperlink", false)}
+            onValueChange={() => settings.toggle("copyAsHyperlink", true)}
+          />
+        }
+      />
+
+<Text style={styles.br}> </Text>
+
+      
 
       <Button
         color={Button.Colors.BRAND}
@@ -72,6 +85,7 @@ export default ({ settings }: SettingsProps) => {
           );
         }}
       />
+        <Text style={styles.br}> </Text>
 
       <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>
     </ScrollView>
