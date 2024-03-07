@@ -60,7 +60,7 @@ export default ({ settings }: SettingsProps) => {
             onValueChange={() => settings.toggle("newUISupport", true)}
           />
         }
-      />,
+      />
 
       <Button
         color={Button.Colors.BRAND}
@@ -71,7 +71,7 @@ export default ({ settings }: SettingsProps) => {
             "https://raw.githubusercontent.com/byeoon/EmotesPlus/main/dist/EmotesPlus.js"
           );
         }}
-      />,
+      />
 
       <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>
     </ScrollView>
