@@ -6,7 +6,7 @@ import { Text, ScrollView, TouchableOpacity, FormRow } from "enmity/components";
 import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
-import {GuildStore, PermissionsStore} from "./components/EmoteClone";
+import {GuildStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
@@ -72,9 +72,17 @@ const EmotesPlus: Plugin = {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
                               {guilds.map(([guildId, guild]) =>
-				                <TouchableOpacity onPress={() => console.log("you clicked me: " + guild)}>
+				                <TouchableOpacity onPress={() => EmoteUploader.uploadEmoji({
+                          guildId: guildId,
+                          image: 'https://fibr.social/assets/Fibr.png',
+                          name: emojiNode.alt,
+                          roles: undefined
+                        }).then(() => {
+                          Toasts.open({ content: `Cloned emoji to ${guild}`})
+                        })
+                      }>
 					              <FormRow
-						              label={"ball"}
+						              label={guild}
 				                	/>
 		                		</TouchableOpacity> 
                         )}
