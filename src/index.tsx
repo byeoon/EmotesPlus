@@ -7,18 +7,19 @@ import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
 import fetchImage from './components/GetDataURL';
-import {GuildStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
+import {PermissionsStore, EmoteUploader} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
+
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
 const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
 const { RedesignCompat } = getByProps('RedesignCompat')
-
 const Permissions = Constants.Permissions
-const guilds = Object.entries(GuildStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
+const guilds =  getByProps("getGuilds").getGuilds().filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
+const guildIcon = getByProps("GuildIconSizes")
 
 function showToast(text) {
    Toasts.open({
@@ -81,12 +82,13 @@ const EmotesPlus: Plugin = {
                           name: emojiNode.alt,
                           roles: undefined
                         }).then(() => {
-                          showToast(`Cloned emote to ${guild} also debug ${emojiNode.src}`)
+                          showToast(`Cloned emote to ${guild}!`)
                           Navigation.pop()
                         })
                       })
                       }>
 					              <FormRow
+                          leading={<guildIcon guild={guild} size="LARGE" animate={true} />}
 						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
