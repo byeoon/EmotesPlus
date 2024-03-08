@@ -7,7 +7,7 @@ import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
 import fetchImage from './components/GetDataURL';
-import {PermissionsStore, EmoteUploader} from "./components/EmoteClone";
+import {GuildsStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
@@ -18,7 +18,7 @@ const Patcher = create('EmotesPlus');
 const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
 const { RedesignCompat } = getByProps('RedesignCompat')
 const Permissions = Constants.Permissions
-const guilds =  getByProps("getGuilds").getGuilds().filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
+const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
 const guildIcon = getByProps("GuildIconSizes")
 
 function showToast(text) {
