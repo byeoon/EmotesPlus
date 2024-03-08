@@ -7,7 +7,7 @@ import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
 import fetchImage from './components/GetDataURL';
-import {GuildsStore, PermissionsStore, EmoteUploader, GuildIcons} from "./components/EmoteClone";
+import {GuildsStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
@@ -89,7 +89,7 @@ const EmotesPlus: Plugin = {
                       })
                       }>
 					              <FormRow
-                          leading={<GuildIcons guild={guild} size="LARGE" animate={false} />}
+                          leading={<GuildIcon guild={guild} />}
 						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
