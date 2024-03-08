@@ -82,7 +82,7 @@ const EmotesPlus: Plugin = {
                         })
                       }>
 					              <FormRow
-						              label={guild}
+						              label={"Server " + guild}
 				                	/>
 		                		</TouchableOpacity> 
                         )}
