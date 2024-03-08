@@ -88,7 +88,6 @@ const EmotesPlus: Plugin = {
                       })
                       }>
 					              <FormRow
-                          leading={<GuildIcon guild={guild} size="LARGE" animate={true} />}
 						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
