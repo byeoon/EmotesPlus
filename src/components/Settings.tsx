@@ -65,7 +65,7 @@ export default ({ settings }: SettingsProps) => {
         label="Copy Emotes as Hyperlink"
         trailing={
           <FormSwitch
-            value={settings.get("copyAsHyperlink", true)}
+            value={settings.get("copyAsHyperlink", false)}
             onValueChange={() => settings.toggle("copyAsHyperlink", true)}
           />
         }

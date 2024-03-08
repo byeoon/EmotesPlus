@@ -1,11 +1,12 @@
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
-import { React, Toasts, Navigation } from 'enmity/metro/common';
+import { React, Toasts, Navigation, Constants } from 'enmity/metro/common';
 import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
-import { Text } from "enmity/components";
+import { Text, ScrollView, TouchableOpacity, FormRow } from "enmity/components";
 import manifest from '../manifest.json';
-import {get, set} from "enmity/api/settings";
+import {get} from "enmity/api/settings";
 import Page from "./components/Page";
+import {GuildStore, PermissionsStore} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
@@ -14,6 +15,9 @@ const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
 const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
 const { RedesignCompat } = getByProps('RedesignCompat')
+
+const Permissions = Constants.Permissions
+const guilds = Object.entries(GuildStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
 
 function showToast(text) {
    Toasts.open({
@@ -65,9 +69,21 @@ const EmotesPlus: Plugin = {
                            text={'Clone to Server'}
                            size={Button.Sizes.SMALL}
                            onPress={() => {
-                            Navigation.push(Page, { component: () =>  <Text text={'Emotes+'} />, name: 'Clone' })
+                            Navigation.push(Page, { component: () =>  
+                            <ScrollView>
+                              <Text text={'Emotes+'} />,
+                              {guilds.map(([guildId, guild]) =>
+				                <TouchableOpacity onPress={() => console.log("you clicked me: " + guild)}>
+					              <FormRow
+						              label={"ball"}
+				                	/>
+		                		</TouchableOpacity> 
+                        )}
+                            </ScrollView>,
+                            
+                             name: 'Clone Emote to Server' })
                              LazyActionSheet.hideActionSheet();
-                           }}
+                              }}
                          />
 
                          );
@@ -75,7 +91,9 @@ const EmotesPlus: Plugin = {
                  })
              })
          })
-     })  
+     }) 
+     
+     
    },
 
    onStop() {
