@@ -3,6 +3,7 @@ import { SettingsStore } from "enmity/api/settings";
 import { Constants, React, StyleSheet } from "enmity/metro/common";
 import { getByProps } from "enmity/metro";
 import manifest from "../../manifest.json";
+import {Linking} from "enmity/metro/common"
 const Clipboard = getByProps("setString");
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 
@@ -77,7 +78,7 @@ export default ({ settings }: SettingsProps) => {
 
       <Button
         color={Button.Colors.BRAND}
-        text={"Copy Download Link"}
+        text={"Copy Plugin Link"}
         size={Button.Sizes.SMALL}
         onPress={() => {
           Clipboard.setString(
@@ -85,6 +86,17 @@ export default ({ settings }: SettingsProps) => {
           );
         }}
       />
+        <Text style={styles.br}> </Text>
+
+        <Button
+        color={Button.Colors.BRAND}
+        text={"Visit GitHub Repository"}
+        size={Button.Sizes.SMALL}
+        onPress={() => {
+         Linking.openURL("https://github.com/byeoon/EmotesPlus");
+        }}
+      />
+        <Text style={styles.br}> </Text>
         <Text style={styles.br}> </Text>
 
       <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>

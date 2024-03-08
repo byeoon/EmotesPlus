@@ -95,7 +95,7 @@ const EmotesPlus: Plugin = {
                         )}
                             </ScrollView>,
                             
-                             name: 'Clone Emote to Server' })
+                             name: 'Clone Emote' })
                              LazyActionSheet.hideActionSheet();
                               }}
                          />
