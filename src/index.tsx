@@ -74,15 +74,16 @@ const EmotesPlus: Plugin = {
                               {guilds.map(([guildId, guild]) =>
 				                <TouchableOpacity onPress={() => EmoteUploader.uploadEmoji({
                           guildId: guildId,
-                          image: 'https://fibr.social/assets/Fibr.png',
+                          image: emojiNode.src,
                           name: emojiNode.alt,
                           roles: undefined
                         }).then(() => {
-                          Toasts.open({ content: `Cloned emoji to ${guild}`})
+                          showToast(`Cloned emote to ${guild} also debug ${emojiNode.src}`)
+                          Navigation.pop()
                         })
                       }>
 					              <FormRow
-						              label={"Server " + guild}
+						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
                         )}
