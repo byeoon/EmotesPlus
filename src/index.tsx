@@ -7,10 +7,11 @@ import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
 import fetchImage from './components/GetDataURL';
-import {GuildsStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
+import {GuildsStore, PermissionsStore, EmoteUploader, GuildIcons} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
+
 
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
@@ -18,8 +19,6 @@ const Patcher = create('EmotesPlus');
 const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
 const { RedesignCompat } = getByProps('RedesignCompat')
 const Permissions = Constants.Permissions
-const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
-const GuildIcon = getByProps("GuildIconSizes")
 
 function showToast(text) {
    Toasts.open({
@@ -45,6 +44,8 @@ const EmotesPlus: Plugin = {
                      if (!details) return;
      
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
+                          const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
+                          const GuildIcon = getByProps("GuildIconSizes")
                          res?.props?.children?.push(
                            <Text text={'Emotes+'} />,
                   
@@ -88,6 +89,7 @@ const EmotesPlus: Plugin = {
                       })
                       }>
 					              <FormRow
+                          leading={<GuildIcons guild={guild} size="LARGE" animate={false} />}
 						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
