@@ -6,6 +6,7 @@ import { Text, ScrollView, TouchableOpacity, FormRow } from "enmity/components";
 import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
+import fetchImage from './components/GetDataURL';
 import {GuildStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
@@ -72,15 +73,18 @@ const EmotesPlus: Plugin = {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
                               {guilds.map(([guildId, guild]) =>
-				                <TouchableOpacity onPress={() => EmoteUploader.uploadEmoji({
+				                <TouchableOpacity onPress={() => 
+                          fetchImage(emojiNode.src, (emoteUrl) => {
+                          EmoteUploader.uploadEmoji({
                           guildId: guildId,
-                          image: emojiNode.src,
+                          image: emoteUrl,
                           name: emojiNode.alt,
                           roles: undefined
                         }).then(() => {
                           showToast(`Cloned emote to ${guild} also debug ${emojiNode.src}`)
                           Navigation.pop()
                         })
+                      })
                       }>
 					              <FormRow
 						              label={" " + guild}
@@ -111,6 +115,9 @@ const EmotesPlus: Plugin = {
    getSettingsPanel({ settings }) {
       return <Settings settings={settings} />;
    }
+
+   
+
 };
 
 registerPlugin(EmotesPlus);
