@@ -71,7 +71,6 @@ const EmotesPlus: Plugin = {
                            onPress={() => {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
-                              <Text text={'Emotes+'} />,
                               {guilds.map(([guildId, guild]) =>
 				                <TouchableOpacity onPress={() => console.log("you clicked me: " + guild)}>
 					              <FormRow
