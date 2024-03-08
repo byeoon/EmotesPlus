@@ -19,7 +19,7 @@ const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
 const { RedesignCompat } = getByProps('RedesignCompat')
 const Permissions = Constants.Permissions
 const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
-const guildIcon = getByProps("GuildIconSizes")
+const GuildIcon = getByProps("GuildIconSizes")
 
 function showToast(text) {
    Toasts.open({
@@ -88,7 +88,7 @@ const EmotesPlus: Plugin = {
                       })
                       }>
 					              <FormRow
-                          leading={<guildIcon guild={guild} size="LARGE" animate={true} />}
+                          leading={<GuildIcon guild={guild} size="LARGE" animate={true} />}
 						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
