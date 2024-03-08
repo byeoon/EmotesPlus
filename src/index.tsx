@@ -45,7 +45,7 @@ const EmotesPlus: Plugin = {
      
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                           const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
-                          const GuildIcon = getByProps("GuildIconSizes")
+
                          res?.props?.children?.push(
                            <Text text={'Emotes+'} />,
                   
@@ -89,7 +89,6 @@ const EmotesPlus: Plugin = {
                       })
                       }>
 					              <FormRow
-                          leading={<GuildIcon guild={guild} />}
 						              label={" " + guild}
 				                	/>
 		                		</TouchableOpacity> 
