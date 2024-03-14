@@ -73,7 +73,7 @@ const EmotesPlus: Plugin = {
                          size={Button.Sizes.SMALL}
                          onPress={() => {
                            fetchImage(emojiNode.src, (emoteUrl) => {
-                              Clipboard.setImage(emoteUrl)
+                              Clipboard.setImage(emoteUrl.split(',')[1])
                            })
                            showToast("Copied Emote as image!");
                            LazyActionSheet.hideActionSheet();
