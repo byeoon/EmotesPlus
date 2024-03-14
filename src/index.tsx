@@ -71,13 +71,13 @@ const EmotesPlus: Plugin = {
                          color={Button.Colors.BRAND}
                          text={'Copy Emote as Image'}
                          size={Button.Sizes.SMALL}
-                         callback= {    
+                         onPress={() => {
                           fetchImage(emojiNode.src, (emoteUrl) => {
-                          Clipboard.setImage(emoteUrl.split(',')[1])
+                            Clipboard.setImage(emoteUrl.split(',')[1])
+                         })
                          showToast("Copied Emote as image!");
-                         LazyActionSheet.hideActionSheet();
-                        })}
-                         onPress={() => { }}
+                           LazyActionSheet.hideActionSheet();
+                         }}
                        />,
 
                        <Text
