@@ -69,7 +69,7 @@ const EmotesPlus: Plugin = {
 
                          <Button
                          color={Button.Colors.BRAND}
-                         text={'Copy Emote as Image'}
+                         text={'Copy Emote as Image (WIP)'}
                          size={Button.Sizes.SMALL}
                          onPress={() => {
                           fetchImage(emojiNode.src, (emoteUrl) => {
