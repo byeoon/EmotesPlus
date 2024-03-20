@@ -35,6 +35,7 @@ export default ({ settings }: SettingsProps) => {
     pluginAuthor: {
       fontSize: 12,
       paddingLeft: 50,
+      paddingRight: 30,
       color: Constants.ThemeColorMap.HEADER_SECONDARY,
     },
     br: {
@@ -45,8 +46,8 @@ export default ({ settings }: SettingsProps) => {
       color: Constants.ThemeColorMap.HEADER_SECONDARY,
     },
     img: {
-      width: 64,
-      height: 64,
+      width: 72,
+      height: 72,
       marginTop: 20,
       marginLeft: 20,
     },
