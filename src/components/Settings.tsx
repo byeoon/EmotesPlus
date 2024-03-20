@@ -1,11 +1,12 @@
-import { FormRow, View, ScrollView, Text, FormSwitch } from "enmity/components";
+import { FormRow, View, ScrollView, Text, FormSwitch, Image } from "enmity/components";
 import { SettingsStore } from "enmity/api/settings";
 import { Constants, React, StyleSheet } from "enmity/metro/common";
 import { getByProps } from "enmity/metro";
+import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
-import {Linking} from "enmity/metro/common";
 
-const currentVersion = JSON.parse("https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json");
+
+const currentVersion = "https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json";
 const Clipboard = getByProps("setString");
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 
@@ -37,6 +38,13 @@ export default ({ settings }: SettingsProps) => {
       paddingRight: 30,
       color: Constants.ThemeColorMap.HEADER_SECONDARY,
     },
+    img: {
+      width: 64,
+      height: 64,
+      paddingTop: 20,
+      paddingLeft: 20,
+      paddingRight: 20,
+    },
     tab: {
       fontSize: 14,
       paddingTop: 20,
@@ -48,9 +56,10 @@ export default ({ settings }: SettingsProps) => {
   return (
     <ScrollView>
       <View style={styles.title}>
+      <Image source={{uri: 'https://avatars.githubusercontent.com/u/47872200?v=4'}} style={styles.img} />
         <Text style={styles.pluginTitle}>EmotesPlus</Text>
         <Text style={styles.pluginAuthor}>Developed by byron</Text>
-        <Text style={styles.pluginAuthor}>Version {manifest.version} | Latest Version: {currentVersion.version}</Text>
+        <Text style={styles.pluginAuthor}>Version {manifest.version} | Remote Version: {currentVersion}</Text>
         <Text style={styles.br}> </Text>
 
       <Text style={styles.tab}>Settings</Text>
@@ -59,7 +68,7 @@ export default ({ settings }: SettingsProps) => {
         label="New UI Support (WIP)"
         trailing={
           <FormSwitch
-            value={settings.get("newUISupport")}
+            value={settings.getBoolean("newUISupport")}
             onValueChange={() => settings.toggle("newUISupport", true)}
           />
         }
@@ -68,7 +77,7 @@ export default ({ settings }: SettingsProps) => {
         label="Copy Emotes as Hyperlink"
         trailing={
           <FormSwitch
-            value={settings.get("copyAsHyperlink", true)}
+            value={settings.getBoolean("copyAsHyperlink", true)}
             onValueChange={() => settings.toggle("copyAsHyperlink", true)}
           />
         }
