@@ -46,7 +46,7 @@ export default ({ settings }: SettingsProps) => {
     img: {
       width: 72,
       height: 72,
-      marginTop: 20,
+      marginTop: 10,
       marginLeft: 20,
     },
     tab: {
@@ -91,11 +91,9 @@ export default ({ settings }: SettingsProps) => {
           Linking.openURL("https://github.com/byeoon/EmotesPlus");
         }}
       />
-      
-      <Text style={styles.br}> </Text>
+
       <Text style={styles.br}> </Text>
       <Text style={styles.tab}>Changelog: </Text>
-      <Text style={styles.br}> </Text>
       <Text style={styles.pluginAuthor}> {manifest.changelog} </Text>
     </ScrollView>
   );
