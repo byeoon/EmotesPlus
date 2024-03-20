@@ -66,12 +66,12 @@ export default ({ settings }: SettingsProps) => {
       <View style={styles.title}>
       <Text style={styles.pluginTitle}>EmotesPlus</Text>
       <Text style={styles.pluginAuthor}>Developed by byron</Text>
-      <Text style={styles.pluginAuthor}>Version {manifest.version} | Remote Version: {currentVersion}</Text>
+      <Text style={styles.pluginAuthor}>Version {manifest.version} | Remote Version: 1.2.0</Text>
       <Text style={styles.br}> </Text>
-
+      </View>
+      </View>
       <Text style={styles.tab}>Settings</Text>
-      </View>
-      </View>
+
        <FormRow
         label="Copy Emotes as Hyperlink"
         trailing={
