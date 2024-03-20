@@ -14,12 +14,17 @@ interface SettingsProps {
   settings: SettingsStore;
 }
 
+// settings style inspired by mafu 
 export default ({ settings }: SettingsProps) => {
   const styles = StyleSheet.createThemedStyleSheet({
     title: {
       flexDirection: "column",
     },
-
+    itiswhatitis: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center"
+    },
     pluginTitle: {
       fontSize: 30,
       paddingTop: 20,
@@ -44,9 +49,6 @@ export default ({ settings }: SettingsProps) => {
       height: 64,
       marginTop: 20,
       marginLeft: 20,
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center"
     },
     tab: {
       fontSize: 14,
@@ -58,14 +60,17 @@ export default ({ settings }: SettingsProps) => {
   });
   return (
     <ScrollView>
-      <View style={styles.title}>
+      <View style={styles.itiswhatitis}>
       <Image source={{uri: 'https://avatars.githubusercontent.com/u/47872200?v=4'}} style={styles.img} />
-        <Text style={styles.pluginTitle}>EmotesPlus</Text>
-        <Text style={styles.pluginAuthor}>Developed by byron</Text>
-        <Text style={styles.pluginAuthor}>Version {manifest.version} | Remote Version: {currentVersion}</Text>
-        <Text style={styles.br}> </Text>
+      
+      <View style={styles.title}>
+      <Text style={styles.pluginTitle}>EmotesPlus</Text>
+      <Text style={styles.pluginAuthor}>Developed by byron</Text>
+      <Text style={styles.pluginAuthor}>Version {manifest.version} | Remote Version: {currentVersion}</Text>
+      <Text style={styles.br}> </Text>
 
       <Text style={styles.tab}>Settings</Text>
+      </View>
       </View>
        <FormRow
         label="Copy Emotes as Hyperlink"
