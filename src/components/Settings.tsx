@@ -3,7 +3,9 @@ import { SettingsStore } from "enmity/api/settings";
 import { Constants, React, StyleSheet } from "enmity/metro/common";
 import { getByProps } from "enmity/metro";
 import manifest from "../../manifest.json";
-import {Linking} from "enmity/metro/common"
+import {Linking} from "enmity/metro/common";
+
+const currentVersion = JSON.parse("https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json");
 const Clipboard = getByProps("setString");
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 
@@ -48,7 +50,7 @@ export default ({ settings }: SettingsProps) => {
       <View style={styles.title}>
         <Text style={styles.pluginTitle}>EmotesPlus</Text>
         <Text style={styles.pluginAuthor}>Developed by byron</Text>
-        <Text style={styles.pluginAuthor}>Version {manifest.version}</Text>
+        <Text style={styles.pluginAuthor}>Version {manifest.version} | Latest Version: {currentVersion.version}</Text>
         <Text style={styles.br}> </Text>
 
       <Text style={styles.tab}>Settings</Text>
@@ -57,7 +59,7 @@ export default ({ settings }: SettingsProps) => {
         label="New UI Support (WIP)"
         trailing={
           <FormSwitch
-            value={settings.get("newUISupport", false)}
+            value={settings.get("newUISupport")}
             onValueChange={() => settings.toggle("newUISupport", true)}
           />
         }
@@ -74,18 +76,7 @@ export default ({ settings }: SettingsProps) => {
 
 <Text style={styles.br}> </Text>
 
-      
 
-      <Button
-        color={Button.Colors.BRAND}
-        text={"Copy Plugin Link"}
-        size={Button.Sizes.SMALL}
-        onPress={() => {
-          Clipboard.setString(
-            "https://raw.githubusercontent.com/byeoon/EmotesPlus/main/dist/EmotesPlus.js"
-          );
-        }}
-      />
         <Text style={styles.br}> </Text>
 
         <Button
