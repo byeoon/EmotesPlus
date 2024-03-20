@@ -42,9 +42,8 @@ export default ({ settings }: SettingsProps) => {
     img: {
       width: 64,
       height: 64,
-      paddingTop: 20,
-      paddingLeft: 20,
-      paddingRight: 20,
+      marginTop: 20,
+      marginLeft: 20,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center"

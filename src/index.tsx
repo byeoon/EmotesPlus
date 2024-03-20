@@ -48,8 +48,7 @@ const EmotesPlus: Plugin = {
 
                          res?.props?.children?.push(
                            <Text 
-                           text={'EmotesPlus'}
-                           style={'color:' + Constants.ThemeColorMap.HEADER_PRIMARY } />,
+                           text={'EmotesPlus'}/>,
                   
                             <Button
                            color={Button.Colors.BRAND}
@@ -82,12 +81,12 @@ const EmotesPlus: Plugin = {
                            LazyActionSheet.hideActionSheet();
                          }}
                        />,
-                       */
+                      
 
                        <Text
                        text={'  '}
                        />,
-
+ */
 
                          <Button
                            color={Button.Colors.BRAND}
