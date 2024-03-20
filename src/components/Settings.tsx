@@ -68,7 +68,7 @@ export default ({ settings }: SettingsProps) => {
         label="New UI Support (WIP)"
         trailing={
           <FormSwitch
-            value={settings.getBoolean("newUISupport")}
+            value={settings.getBoolean("newUISupport", true)}
             onValueChange={() => settings.toggle("newUISupport", true)}
           />
         }
