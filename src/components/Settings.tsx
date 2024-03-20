@@ -19,6 +19,7 @@ export default ({ settings }: SettingsProps) => {
     title: {
       flexDirection: "column",
     },
+
     pluginTitle: {
       fontSize: 30,
       paddingTop: 20,
@@ -44,6 +45,9 @@ export default ({ settings }: SettingsProps) => {
       paddingTop: 20,
       paddingLeft: 20,
       paddingRight: 20,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center"
     },
     tab: {
       fontSize: 14,
@@ -64,15 +68,6 @@ export default ({ settings }: SettingsProps) => {
 
       <Text style={styles.tab}>Settings</Text>
       </View>
-      <FormRow
-        label="New UI Support (WIP)"
-        trailing={
-          <FormSwitch
-            value={settings.getBoolean("newUISupport", true)}
-            onValueChange={() => settings.toggle("newUISupport", true)}
-          />
-        }
-      />
        <FormRow
         label="Copy Emotes as Hyperlink"
         trailing={
