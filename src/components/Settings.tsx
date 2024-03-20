@@ -5,16 +5,14 @@ import { getByProps } from "enmity/metro";
 import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
 
-
 const currentVersion = "https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json";
-const Clipboard = getByProps("setString");
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 
 interface SettingsProps {
   settings: SettingsStore;
 }
 
-// settings style inspired by mafu 
+// settings style inspired by mafu
 export default ({ settings }: SettingsProps) => {
   const styles = StyleSheet.createThemedStyleSheet({
     title: {
@@ -23,7 +21,7 @@ export default ({ settings }: SettingsProps) => {
     itiswhatitis: {
       flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
     },
     pluginTitle: {
       fontSize: 32,
@@ -34,7 +32,7 @@ export default ({ settings }: SettingsProps) => {
     },
     pluginAuthor: {
       fontSize: 12,
-      paddingLeft: 50,
+      paddingLeft: 20,
       paddingRight: 30,
       color: Constants.ThemeColorMap.HEADER_SECONDARY,
     },
@@ -62,18 +60,17 @@ export default ({ settings }: SettingsProps) => {
   return (
     <ScrollView>
       <View style={styles.itiswhatitis}>
-      <Image source={{uri: 'https://avatars.githubusercontent.com/u/47872200?v=4'}} style={styles.img} />
-      
-      <View style={styles.title}>
-      <Text style={styles.pluginTitle}>EmotesPlus</Text>
-      <Text style={styles.pluginAuthor}>Developed by byron</Text>
-      <Text style={styles.pluginAuthor}>Version {manifest.version} | Remote Version: 1.2.0</Text>
-      <Text style={styles.br}> </Text>
-      </View>
+        <Image source={{ uri: "https://avatars.githubusercontent.com/u/47872200?v=4", }} style={styles.img} />
+        <View style={styles.title}>
+          <Text style={styles.pluginTitle}>EmotesPlus</Text>
+          <Text style={styles.pluginAuthor}>Developed by byron</Text>
+          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: 1.1.0 </Text>
+          <Text style={styles.br}> </Text>
+        </View>
       </View>
       <Text style={styles.tab}>Settings</Text>
 
-       <FormRow
+      <FormRow
         label="Copy Emotes as Hyperlink"
         trailing={
           <FormSwitch
@@ -83,23 +80,23 @@ export default ({ settings }: SettingsProps) => {
         }
       />
 
-<Text style={styles.br}> </Text>
+      <Text style={styles.br}> </Text>
+      <Text style={styles.br}> </Text>
 
-
-        <Text style={styles.br}> </Text>
-
-        <Button
+      <Button
         color={Button.Colors.BRAND}
         text={"Visit GitHub Repository"}
         size={Button.Sizes.SMALL}
         onPress={() => {
-         Linking.openURL("https://github.com/byeoon/EmotesPlus");
+          Linking.openURL("https://github.com/byeoon/EmotesPlus");
         }}
       />
-        <Text style={styles.br}> </Text>
-        <Text style={styles.br}> </Text>
-
-      <Text style={styles.pluginAuthor}>Changelog: {manifest.changelog}</Text>
+      
+      <Text style={styles.br}> </Text>
+      <Text style={styles.br}> </Text>
+      <Text style={styles.tab}>Changelog: </Text>
+      <Text style={styles.br}> </Text>
+      <Text style={styles.pluginAuthor}> {manifest.changelog} </Text>
     </ScrollView>
   );
 };
