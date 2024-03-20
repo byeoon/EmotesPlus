@@ -26,7 +26,7 @@ export default ({ settings }: SettingsProps) => {
       alignItems: "center"
     },
     pluginTitle: {
-      fontSize: 30,
+      fontSize: 32,
       paddingTop: 20,
       paddingLeft: 20,
       paddingRight: 30,
@@ -34,7 +34,7 @@ export default ({ settings }: SettingsProps) => {
     },
     pluginAuthor: {
       fontSize: 12,
-      paddingLeft: 45,
+      paddingLeft: 50,
       color: Constants.ThemeColorMap.HEADER_SECONDARY,
     },
     br: {
