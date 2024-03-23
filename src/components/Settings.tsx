@@ -5,9 +5,16 @@ import { getByProps } from "enmity/metro";
 import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
 
-const currentVersion = "https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json";
-const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
+async function checkUpdate()
+{
+  const resp = await fetch("https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json");
+  const content = await resp.json();
 
+  return content.version;
+}
+
+
+const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 interface SettingsProps {
   settings: SettingsStore;
 }
@@ -64,7 +71,7 @@ export default ({ settings }: SettingsProps) => {
         <View style={styles.title}>
           <Text style={styles.pluginTitle}>EmotesPlus</Text>
           <Text style={styles.pluginAuthor}>Developed by byron</Text>
-          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: 1.1.0 </Text>
+          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: {checkUpdate()} </Text>
           <Text style={styles.br}> </Text>
         </View>
       </View>

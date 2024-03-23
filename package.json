@@ -26,6 +26,7 @@
       "esbuild-windows-64": "^0.14.21"
    },
    "dependencies": {
-      "enmity": "*"
+      "enmity": "*",
+      "react-devtools": "^5.0.2"
    }
 }
