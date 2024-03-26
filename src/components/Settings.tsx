@@ -19,9 +19,7 @@ function versionHandler() {
       checkUpdate().then(setVersion); 
   }, []); 
 
-  return <View>
-      <Text>{version}</Text>
-  </View>
+  return version
 }
   
   
