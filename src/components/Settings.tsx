@@ -12,6 +12,12 @@ async function checkUpdate()
 
   return content.version;
 }
+  
+  const [version, setVersion] = React.useState<string>();
+  React.useEffect(() => {
+    checkUpdate().then(setVersion);
+}, []);
+
 
 
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
@@ -71,7 +77,7 @@ export default ({ settings }: SettingsProps) => {
         <View style={styles.title}>
           <Text style={styles.pluginTitle}>EmotesPlus</Text>
           <Text style={styles.pluginAuthor}>Developed by byron</Text>
-          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: {checkUpdate()} </Text>
+          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: {version} </Text>
           <Text style={styles.br}> </Text>
         </View>
       </View>
