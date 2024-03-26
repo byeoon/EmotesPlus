@@ -7,16 +7,26 @@ import manifest from "../../manifest.json";
 
 async function checkUpdate()
 {
+  
   const resp = await fetch("https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json");
   const content = await resp.json();
-
   return content.version;
 }
-  
+
+function versionHandler() {
   const [version, setVersion] = React.useState<string>();
+
   React.useEffect(() => {
-    checkUpdate().then(setVersion);
-}, []);
+      checkUpdate().then(setVersion); 
+  })
+
+  return <View>
+      <Text>{version}</Text>
+  </View>
+}
+  
+  
+
 
 
 
@@ -77,7 +87,7 @@ export default ({ settings }: SettingsProps) => {
         <View style={styles.title}>
           <Text style={styles.pluginTitle}>EmotesPlus</Text>
           <Text style={styles.pluginAuthor}>Developed by byron</Text>
-          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: {version} </Text>
+          <Text style={styles.pluginAuthor}> Version {manifest.version} | Remote Version: {versionHandler()}</Text>
           <Text style={styles.br}> </Text>
         </View>
       </View>
