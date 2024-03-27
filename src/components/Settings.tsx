@@ -1,6 +1,6 @@
 import { FormRow, View, ScrollView, Text, FormSwitch, Image } from "enmity/components";
 import { SettingsStore } from "enmity/api/settings";
-import { Constants, React, StyleSheet } from "enmity/metro/common";
+import { Constants, React, StyleSheet, Toasts } from "enmity/metro/common";
 import { getByProps } from "enmity/metro";
 import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
@@ -21,11 +21,24 @@ function versionHandler() {
 
   return version
 }
-  
-  
 
+function showToast(text) {
+  Toasts.open({
+     content: text
+  })
+}
 
-
+function alertUpdate()
+{
+  if(versionHandler() > manifest.version)
+  {
+    showToast("You are on an earlier version of EmotesPlus, please update by downloading the newest version through GitHub or the Enmity plugins channel.");
+  }
+  else
+  {
+      showToast("No updates required!");
+  }
+}
 
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 interface SettingsProps {
@@ -78,6 +91,7 @@ export default ({ settings }: SettingsProps) => {
     },
   });
   return (
+    
     <ScrollView>
       <View style={styles.itiswhatitis}>
         <Image source={{ uri: "https://avatars.githubusercontent.com/u/47872200?v=4", }} style={styles.img} />
@@ -109,6 +123,15 @@ export default ({ settings }: SettingsProps) => {
         size={Button.Sizes.SMALL}
         onPress={() => {
           Linking.openURL("https://github.com/byeoon/EmotesPlus");
+        }}
+      />
+
+            <Button
+        color={Button.Colors.BRAND}
+        text={"Check For Updates"}
+        size={Button.Sizes.SMALL}
+        onPress={() => {
+          alertUpdate();
         }}
       />
 
