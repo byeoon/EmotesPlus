@@ -30,14 +30,7 @@ function showToast(text) {
 
 function alertUpdate()
 {
-  if(versionHandler() > manifest.version)
-  {
-    showToast("You are on an earlier version of EmotesPlus, please update by downloading the newest version through GitHub or the Enmity plugins channel.");
-  }
-  else
-  {
-      showToast("No updates required!");
-  }
+  // bruh
 }
 
 const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
@@ -126,14 +119,6 @@ export default ({ settings }: SettingsProps) => {
         }}
       />
 
-            <Button
-        color={Button.Colors.BRAND}
-        text={"Check For Updates"}
-        size={Button.Sizes.SMALL}
-        onPress={() => {
-          alertUpdate();
-        }}
-      />
 
       <Text style={styles.br}> </Text>
       <Text style={styles.tab}>Changelog: </Text>
