@@ -87,7 +87,6 @@ const EmotesPlus: Plugin = {
                        text={'  '}
                        />,
  */
-
                          <Button
                            color={Button.Colors.BRAND}
                            text={'Clone to Server'}
@@ -120,17 +119,12 @@ const EmotesPlus: Plugin = {
                              LazyActionSheet.hideActionSheet();
                               }}
                          />
-
                          );
                      })
                  })
              })
          })
      }) 
-
-
-
-
 
      const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
       if (key !== 'sticker_detail') return;
@@ -143,7 +137,7 @@ const EmotesPlus: Plugin = {
                   React.useEffect(() => () => void unpatchStickerType(), []);
                   const details = findInReactTree(res, x => x?.type && x?.props?.emojiNode && x?.props?.nonce);
                   if (!details) return;
-  
+  /*
                   Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                   
                       res?.props?.children?.push(
@@ -169,6 +163,7 @@ const EmotesPlus: Plugin = {
                       />
                       );
                   })
+                  */
               })
           })
       })
