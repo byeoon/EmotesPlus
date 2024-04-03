@@ -135,9 +135,10 @@ const EmotesPlus: Plugin = {
               const unpatchStickerType = Patcher.after(res, 'type', (_, __, res) => {
                 console.log("[EmotesPlus] " + res);
                   React.useEffect(() => () => void unpatchStickerType(), []);
+          /*
                   const details = findInReactTree(res, x => x?.type && x?.props?.emojiNode && x?.props?.nonce);
                   if (!details) return;
-  /*
+  
                   Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                   
                       res?.props?.children?.push(

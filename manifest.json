@@ -11,6 +11,7 @@
    "color": "#00007d",
    "sourceUrl": "https://github.com/byeoon/EmotesPlus",
    "changelog": [
-      "\n 1.0.0: The actual, first, initial release of EmotesPlus! \n"
+      "\n 1.0.0: The actual, first, initial release of EmotesPlus! \n", 
+      "1.0.1: Added rough sticker support."
    ]
 }
