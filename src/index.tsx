@@ -127,6 +127,86 @@ const EmotesPlus: Plugin = {
              })
          })
      }) 
+
+
+
+
+
+     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
+      if (key !== 'sticker_detail') return;
+      unpatchStickerLazy();
+      component.then(instance => {
+          const unpatchStickerInstance = Patcher.after(instance, 'default', (_, __, res) => {
+           //   unpatchStickerInstance();
+              const unpatchStickerType = Patcher.after(res, 'type', (_, __, res) => {
+                  React.useEffect(() => () => void unpatchStickerType(), []);
+                  const details = findInReactTree(res, x => x?.type && x?.props?.emojiNode && x?.props?.nonce);
+                  if (!details) return;
+  
+                  Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
+                       const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
+
+                      res?.props?.children?.push(
+                        <Text 
+                        text={'EmotesPlus'}/>,
+               
+                         <Button
+                        color={Button.Colors.BRAND}
+                        text={'Copy Sticker URL'}
+                        size={Button.Sizes.SMALL}
+                        onPress={() => {
+                          showToast("Copied Sticker URL to clipboard!");
+                          if(get(manifest.name, "copyAsHyperlink", false))
+                          { Clipboard.setString(emojiNode.src); }
+                          else
+                          {  Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")"); } 
+                          LazyActionSheet.hideActionSheet();
+                        }}
+                      />,
+
+                      <Text
+                      text={'  '}
+                      />,
+
+                      <Button
+                        color={Button.Colors.BRAND}
+                        text={'Clone to Server [WIP for Stickers]'}
+                        size={Button.Sizes.SMALL}
+                        onPress={() => {
+                         Navigation.push(Page, { component: () =>  
+                         <ScrollView>
+                           {guilds.map(([guildId, guild]) =>
+                     <TouchableOpacity onPress={() => 
+                       fetchImage(emojiNode.src, (emoteUrl) => {
+                       EmoteUploader.uploadEmoji({
+                       guildId: guildId,
+                       image: emoteUrl,
+                       name: emojiNode.alt,
+                       roles: undefined
+                     }).then(() => {
+                       showToast(`Cloned emote to ${guild}!`)
+                       Navigation.pop()
+                     })
+                   })
+                   }>
+                     <FormRow
+                       label={" " + guild}
+                       />
+                     </TouchableOpacity> 
+                     )}
+                         </ScrollView>,
+                         
+                          name: 'Clone Sticker' })
+                          LazyActionSheet.hideActionSheet();
+                           }}
+                      />
+
+                      );
+                  })
+              })
+          })
+      })
+  }) 
      
      
    },
