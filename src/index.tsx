@@ -27,6 +27,18 @@ function showToast(text) {
    })
 }
 
+type Sticker = {
+  id: string
+  name: string
+  tags: string
+  type: number
+  format_type: number
+  description: string
+  asset: string
+  available: boolean
+  guild_id: string
+}
+
 const EmotesPlus: Plugin = {
    ...manifest,
 
@@ -125,57 +137,18 @@ const EmotesPlus: Plugin = {
              })
          })
      }) 
+     
 
      const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
       if (key !== 'sticker_detail') return;
-      /*
       unpatchStickerLazy();
       component.then(instance => {
-          const unpatchStickerInstance = Patcher.after(instance, 'default', (_, __, res) => {
-           //   unpatchStickerInstance();
-           
-              const unpatchStickerType = Patcher.after(res, 'type', (_, __, res) => {
-                
-                  React.useEffect(() => () => void unpatchStickerType(), []);
-          
-                  const details = findInReactTree(res, x => x?.type && x?.props?.emojiNode && x?.props?.nonce);
-                  if (!details) return;
-  
-                  Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
-                  
-                      res?.props?.children?.push(
-                        <Text 
-                        text={'EmotesPlus'}/>,
-               
-                         <Button
-                        color={Button.Colors.BRAND}
-                        text={'Copy Sticker URL'}
-                        size={Button.Sizes.SMALL}
-                        onPress={() => {
-                          showToast("Copied Sticker URL to clipboard!");
-                          if(get(manifest.name, "copyAsHyperlink", false))
-                          { Clipboard.setString(emojiNode.src); }
-                          else
-                          {  Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")"); } 
-                          LazyActionSheet.hideActionSheet();
-                        }}
-                      />,
-
-                      <Text
-                      text={'  '}
-                      />
-                      );
-                  })
-                  
-              })
-              
-          })
+        const wtfdoesthatmean = findInReactTree(component, x => Array.isArray(x?.children))
+        const sticker = findInReactTree(component, x => typeof x?.sticker === "object" && x?.sticker?.hasOwnProperty("guild_id"))?.sticker as Sticker;
+        console.log(sticker);
+       })
       })
-      */
-  }) 
-     
-     
-   },
+    },
 
    onStop() {
       Patcher.unpatchAll();
