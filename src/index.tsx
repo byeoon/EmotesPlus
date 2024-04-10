@@ -145,7 +145,9 @@ const EmotesPlus: Plugin = {
       component.then(instance => {
         const wtfdoesthatmean = findInReactTree(component, x => Array.isArray(x?.children))
         const sticker = findInReactTree(component, x => typeof x?.sticker === "object" && x?.sticker?.hasOwnProperty("guild_id"))?.sticker as Sticker;
-        console.log(sticker);
+        const stickerUrl = `https://discord.com/stickers/${sticker.id}.png`
+        console.log("enmity " + sticker + "also " + wtfdoesthatmean + "and " + stickerUrl);
+
        })
       })
     },
@@ -157,9 +159,6 @@ const EmotesPlus: Plugin = {
    getSettingsPanel({ settings }) {
       return <Settings settings={settings} />;
    }
-
-   
-
 };
 
 registerPlugin(EmotesPlus);
