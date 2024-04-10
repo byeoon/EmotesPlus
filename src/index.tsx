@@ -27,17 +27,7 @@ function showToast(text) {
    })
 }
 
-type Sticker = {
-  id: string
-  name: string
-  tags: string
-  type: number
-  format_type: number
-  description: string
-  asset: string
-  available: boolean
-  guild_id: string
-}
+
 
 const EmotesPlus: Plugin = {
    ...manifest,
@@ -138,17 +128,29 @@ const EmotesPlus: Plugin = {
          })
      }) 
      
+     type Sticker = {
+      id: string
+      name: string
+      tags: string
+      type: number
+      format_type: number
+      description: string
+      asset: string
+      available: boolean
+      guild_id: string
+    }
 
-     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
+    
+     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', ([component, key]) => {
       if (key !== 'sticker_detail') return;
-      unpatchStickerLazy();
-      component.then(instance => {
+     // unpatchStickerLazy();
         const wtfdoesthatmean = findInReactTree(component, x => Array.isArray(x?.children))
         const sticker = findInReactTree(component, x => typeof x?.sticker === "object" && x?.sticker?.hasOwnProperty("guild_id"))?.sticker as Sticker;
+        if( !wtfdoesthatmean || !sticker)
+          return;
+        
         const stickerUrl = `https://discord.com/stickers/${sticker.id}.png`
         console.log("enmity " + sticker + "also " + wtfdoesthatmean + "and " + stickerUrl);
-
-       })
       })
     },
 
