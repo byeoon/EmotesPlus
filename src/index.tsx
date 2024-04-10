@@ -141,14 +141,13 @@ const EmotesPlus: Plugin = {
     }
 
     
-     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', ([component, key]) => {
-      if (key !== 'sticker_detail') return;
-     // unpatchStickerLazy();
+     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', ([component]) => {
+       unpatchStickerLazy();
         const wtfdoesthatmean = findInReactTree(component, x => Array.isArray(x?.children))
         const sticker = findInReactTree(component, x => typeof x?.sticker === "object" && x?.sticker?.hasOwnProperty("guild_id"))?.sticker as Sticker;
         if( !wtfdoesthatmean || !sticker)
           return;
-        
+
         const stickerUrl = `https://discord.com/stickers/${sticker.id}.png`
         console.log("enmity " + sticker + "also " + wtfdoesthatmean + "and " + stickerUrl);
       })
