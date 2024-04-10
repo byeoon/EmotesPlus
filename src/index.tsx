@@ -128,12 +128,12 @@ const EmotesPlus: Plugin = {
 
      const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
       if (key !== 'sticker_detail') return;
+      /*
       unpatchStickerLazy();
       component.then(instance => {
           const unpatchStickerInstance = Patcher.after(instance, 'default', (_, __, res) => {
            //   unpatchStickerInstance();
-           console.log("[EmotesPlus] fuck you " + res);
-           /*
+           
               const unpatchStickerType = Patcher.after(res, 'type', (_, __, res) => {
                 
                   React.useEffect(() => () => void unpatchStickerType(), []);
@@ -168,9 +168,10 @@ const EmotesPlus: Plugin = {
                   })
                   
               })
-              */
+              
           })
       })
+      */
   }) 
      
      
