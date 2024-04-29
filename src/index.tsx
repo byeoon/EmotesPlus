@@ -95,6 +95,9 @@ const EmotesPlus: Plugin = {
                               placeholder={emojiNode.alt}
                               title="Custom Emote Name"
                           />
+                        <Text
+                         text={''}
+                         />
                           {guilds.map(([guildId, guild]) =>
 				                <TouchableOpacity onPress={() => 
                           fetchImage(emojiNode.src, (emoteUrl) => {

@@ -109,6 +109,7 @@ export default ({ settings }: SettingsProps) => {
       <Text style={styles.br}> </Text>
       <FormRow
           label="Open GitHub Repository"
+          icon="ic_arrow_right"
           onPress={() => Linking.openURL("https://github.com/byeoon/EmotesPlus")}
       />
       <Text style={styles.br}> </Text>
