@@ -66,7 +66,7 @@ const EmotesPlus: Plugin = {
                          />,
 
                          <Text
-                         text={'  '}
+                         text={''}
                          />,
 
                          /*
@@ -91,10 +91,9 @@ const EmotesPlus: Plugin = {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
                               <FormInput
-                              value={emojiNode.alt}
                               onChange={(v: string) => customEmoteName = v}
                               placeholder={emojiNode.alt}
-                              title="Custom Name"
+                              title="Custom Emote Name"
                           />,
 
                               {guilds.map(([guildId, guild]) =>

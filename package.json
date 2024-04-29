@@ -1,7 +1,7 @@
 {
    "name": "emotesplus",
    "description": "Better mobile emote management.",
-   "version": "1.0.1",
+   "version": "1.0.0",
    "license": "GPL-3.0",
    "author": "byeoon",
    "scripts": {
