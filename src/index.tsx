@@ -2,7 +2,7 @@ import { Plugin, registerPlugin } from 'enmity/managers/plugins';
 import { React, Toasts, Navigation, Constants } from 'enmity/metro/common';
 import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
-import { Text, ScrollView, TouchableOpacity, FormRow } from "enmity/components";
+import { Text, ScrollView, TouchableOpacity, FormRow, FormInput } from "enmity/components";
 import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
@@ -12,12 +12,10 @@ import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
 
-
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
 const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
-const { RedesignCompat } = getByProps('RedesignCompat')
 const Permissions = Constants.Permissions
 
 function showToast(text) {
@@ -33,7 +31,7 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-      console.log("[EmotesPlus] Hello World!");
+    let customEmoteName = "";
       const unpatchOpenLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
          if (key !== 'MessageEmojiActionSheet') return;
          unpatchOpenLazy();
@@ -47,22 +45,23 @@ const EmotesPlus: Plugin = {
      
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                           const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
-
                          res?.props?.children?.push(
                            <Text 
                            text={'EmotesPlus'}/>,
-                  
+                
                             <Button
                            color={Button.Colors.BRAND}
                            text={'Copy Emote URL'}
                            size={Button.Sizes.SMALL}
                            onPress={() => {
                              showToast("Copied Emote URL to clipboard!");
-                             if(get(manifest.name, "copyAsHyperlink", false))
-                             { Clipboard.setString(emojiNode.src); }
-                             else
-                             {  Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")"); } 
-                             LazyActionSheet.hideActionSheet();
+                             if(get(manifest.name, "copyAsHyperlink", false)) { 
+                              Clipboard.setString(emojiNode.src); 
+                            }
+                             else {  
+                              Clipboard.setString("[" + emojiNode.alt + "]" + "(" + emojiNode.src + ")"); 
+                            } 
+                            LazyActionSheet.hideActionSheet();
                            }}
                          />,
 
@@ -73,7 +72,7 @@ const EmotesPlus: Plugin = {
                          /*
                          <Button
                          color={Button.Colors.BRAND}
-                         text={'Copy Emote as Image (WIP)'}
+                         text={'Copy Emote as Image'}
                          size={Button.Sizes.SMALL}
                          onPress={() => {
                           fetchImage(emojiNode.src, (emoteUrl) => {
@@ -83,11 +82,6 @@ const EmotesPlus: Plugin = {
                            LazyActionSheet.hideActionSheet();
                          }}
                        />,
-                      
-
-                       <Text
-                       text={'  '}
-                       />,
  */
                          <Button
                            color={Button.Colors.BRAND}
@@ -96,13 +90,20 @@ const EmotesPlus: Plugin = {
                            onPress={() => {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
+                              <FormInput
+                              value={emojiNode.alt}
+                              onChange={(v: string) => customEmoteName = v}
+                              placeholder={emojiNode.alt}
+                              title="Custom Name"
+                          />,
+
                               {guilds.map(([guildId, guild]) =>
 				                <TouchableOpacity onPress={() => 
                           fetchImage(emojiNode.src, (emoteUrl) => {
                           EmoteUploader.uploadEmoji({
                           guildId: guildId,
                           image: emoteUrl,
-                          name: emojiNode.alt,
+                          name: customEmoteName,
                           roles: undefined
                         }).then(() => {
                           showToast(`Cloned emote to ${guild}!`)
@@ -116,7 +117,6 @@ const EmotesPlus: Plugin = {
 		                		</TouchableOpacity> 
                         )}
                             </ScrollView>,
-                            
                              name: 'Clone Emote' })
                              LazyActionSheet.hideActionSheet();
                               }}
@@ -127,30 +127,6 @@ const EmotesPlus: Plugin = {
              })
          })
      }) 
-     
-     type Sticker = {
-      id: string
-      name: string
-      tags: string
-      type: number
-      format_type: number
-      description: string
-      asset: string
-      available: boolean
-      guild_id: string
-    }
-
-    
-     const unpatchStickerLazy = Patcher.before(LazyActionSheet, 'openLazy', ([component]) => {
-       unpatchStickerLazy();
-        const wtfdoesthatmean = findInReactTree(component, x => Array.isArray(x?.children))
-        const sticker = findInReactTree(component, x => typeof x?.sticker === "object" && x?.sticker?.hasOwnProperty("guild_id"))?.sticker as Sticker;
-        if( !wtfdoesthatmean || !sticker)
-          return;
-
-        const stickerUrl = `https://discord.com/stickers/${sticker.id}.png`
-        console.log("enmity " + sticker + "also " + wtfdoesthatmean + "and " + stickerUrl);
-      })
     },
 
    onStop() {
