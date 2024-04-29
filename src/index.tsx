@@ -88,9 +88,10 @@ const EmotesPlus: Plugin = {
                            text={'Clone to Server'}
                            size={Button.Sizes.SMALL}
                            onPress={() => {
+                            customEmoteName = emojiNode.alt;
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
-                              customEmoteName = emojiNode.alt;
+                            
                             <FormInput
                               onChange={(v: string) => customEmoteName = v}
                               placeholder={emojiNode.alt}
