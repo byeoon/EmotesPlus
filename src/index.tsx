@@ -31,7 +31,6 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
-    let customEmoteName = "";
       const unpatchOpenLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
          if (key !== 'MessageEmojiActionSheet') return;
          unpatchOpenLazy();
@@ -43,6 +42,7 @@ const EmotesPlus: Plugin = {
                      const details = findInReactTree(res, x => x?.type && x?.props?.emojiNode && x?.props?.nonce);
                      if (!details) return;
      
+                     let customEmoteName = "placeholdername";
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                           const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
                          res?.props?.children?.push(
@@ -90,13 +90,12 @@ const EmotesPlus: Plugin = {
                            onPress={() => {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
-                              <FormInput
+                            <FormInput
                               onChange={(v: string) => customEmoteName = v}
                               placeholder={emojiNode.alt}
                               title="Custom Emote Name"
-                          />,
-
-                              {guilds.map(([guildId, guild]) =>
+                          />
+                          {guilds.map(([guildId, guild]) =>
 				                <TouchableOpacity onPress={() => 
                           fetchImage(emojiNode.src, (emoteUrl) => {
                           EmoteUploader.uploadEmoji({

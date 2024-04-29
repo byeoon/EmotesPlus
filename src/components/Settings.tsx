@@ -106,20 +106,11 @@ export default ({ settings }: SettingsProps) => {
           />
         }
       />
-
       <Text style={styles.br}> </Text>
-      <Text style={styles.br}> </Text>
-
-      <Button
-        color={Button.Colors.BRAND}
-        text={"Visit GitHub Repository"}
-        size={Button.Sizes.SMALL}
-        onPress={() => {
-          Linking.openURL("https://github.com/byeoon/EmotesPlus");
-        }}
+      <FormRow
+          label="Open GitHub Repository"
+          onPress={() => Linking.openURL("https://github.com/byeoon/EmotesPlus")}
       />
-
-
       <Text style={styles.br}> </Text>
       <Text style={styles.tab}>Changelog: </Text>
       <Text style={styles.pluginAuthor}> {manifest.changelog} </Text>
