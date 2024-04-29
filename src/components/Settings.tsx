@@ -100,7 +100,6 @@ export default ({ settings }: SettingsProps) => {
           icon="ic_arrow_right"
           onPress={() => Linking.openURL("https://github.com/byeoon/EmotesPlus")}
       />
-      <Text style={styles.br}> </Text>
       <Text style={styles.tab}>Changelog: </Text>
       <Text style={styles.pluginAuthor}> {manifest.changelog} </Text>
     </ScrollView>

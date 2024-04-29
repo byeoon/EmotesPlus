@@ -44,7 +44,10 @@ const EmotesPlus: Plugin = {
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                           const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
                          res?.props?.children?.push(
-                          <FormDivider />,
+
+                          <Text
+                          text={'EmotesPlus'}
+                          />,
                 
                             <Button
                            color={Button.Colors.BRAND}
