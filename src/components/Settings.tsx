@@ -1,4 +1,4 @@
-import { FormRow, View, ScrollView, Text, FormSwitch, Image } from "enmity/components";
+import { FormRow, View, ScrollView, Text, FormSwitch, Image, FormDivider } from "enmity/components";
 import { SettingsStore } from "enmity/api/settings";
 import { Constants, React, StyleSheet, Toasts } from "enmity/metro/common";
 import { getByProps } from "enmity/metro";
@@ -22,18 +22,6 @@ function versionHandler() {
   return version
 }
 
-function showToast(text) {
-  Toasts.open({
-     content: text
-  })
-}
-
-function alertUpdate()
-{
-  // bruh
-}
-
-const { default: Button } = getByProps("ButtonColors", "ButtonSizes");
 interface SettingsProps {
   settings: SettingsStore;
 }
@@ -106,7 +94,7 @@ export default ({ settings }: SettingsProps) => {
           />
         }
       />
-      <Text style={styles.br}> </Text>
+       <FormDivider />
       <FormRow
           label="Open GitHub Repository"
           icon="ic_arrow_right"

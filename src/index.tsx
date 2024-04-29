@@ -2,7 +2,7 @@ import { Plugin, registerPlugin } from 'enmity/managers/plugins';
 import { React, Toasts, Navigation, Constants } from 'enmity/metro/common';
 import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
-import { Text, ScrollView, TouchableOpacity, FormRow, FormInput } from "enmity/components";
+import { Text, ScrollView, TouchableOpacity, FormRow, FormInput, FormDivider } from "enmity/components";
 import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
@@ -15,7 +15,7 @@ import Settings from './components/Settings';
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
 const Patcher = create('EmotesPlus');
-const { default: Button } = getByProps('ButtonColors', 'ButtonSizes')
+const { default: Button } = getByProps('ButtonColors', 'ButtonSizes');
 const Permissions = Constants.Permissions
 
 function showToast(text) {
@@ -24,8 +24,6 @@ function showToast(text) {
       icon: getIDByName('Check')
    })
 }
-
-
 
 const EmotesPlus: Plugin = {
    ...manifest,
@@ -46,8 +44,7 @@ const EmotesPlus: Plugin = {
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                           const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
                          res?.props?.children?.push(
-                           <Text 
-                           text={'EmotesPlus'}/>,
+                          <FormDivider />,
                 
                             <Button
                            color={Button.Colors.BRAND}
@@ -95,9 +92,7 @@ const EmotesPlus: Plugin = {
                               placeholder={emojiNode.alt}
                               title="Custom Emote Name"
                           />
-                        <Text
-                         text={''}
-                         />
+                        <FormDivider />
                           {guilds.map(([guildId, guild]) =>
 				                <TouchableOpacity onPress={() => 
                           fetchImage(emojiNode.src, (emoteUrl) => {
@@ -118,7 +113,7 @@ const EmotesPlus: Plugin = {
 		                		</TouchableOpacity> 
                         )}
                             </ScrollView>,
-                             name: 'Clone Emote' })
+                             name: 'Clone Emote'})
                              LazyActionSheet.hideActionSheet();
                               }}
                          />
