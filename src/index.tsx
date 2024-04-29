@@ -90,6 +90,7 @@ const EmotesPlus: Plugin = {
                            onPress={() => {
                             Navigation.push(Page, { component: () =>  
                             <ScrollView>
+                              customEmoteName = emojiNode.alt;
                             <FormInput
                               onChange={(v: string) => customEmoteName = v}
                               placeholder={emojiNode.alt}
