@@ -6,7 +6,7 @@ import { Text, ScrollView, TouchableOpacity, FormRow, FormInput, FormDivider } f
 import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
-import fetchImage from './components/GetDataURL';
+import fetchImage from '../TODO/GetDataURL';
 import {GuildsStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
@@ -44,7 +44,6 @@ const EmotesPlus: Plugin = {
                      Patcher.after(details, 'type', (_, [{ emojiNode }], res) => {    
                           const guilds = Object.entries(GuildsStore.getGuilds()).filter(([guildId, guild]) => PermissionsStore.can(Permissions.MANAGE_GUILD_EXPRESSIONS, guild))
                          res?.props?.children?.push(
-
                           <Text
                           text={'EmotesPlus'}
                           />,

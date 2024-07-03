@@ -1,5 +1,4 @@
-// Originally from Stealmoji made by FieryFlames, will change to make it more unique later but I'm really bad 
-// at ui design lmao
+// Originally from Stealmoji made by FieryFlames, will change to make it more unique later but I'm really bad at ui design lmao
 
 import { React, Navigation, NavigationNative, NavigationStack, StyleSheet, Constants, } from "enmity/metro/common";
 import { TouchableOpacity, Text, View } from "enmity/components";
