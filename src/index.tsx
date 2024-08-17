@@ -68,36 +68,25 @@ const EmotesPlus: Plugin = {
                          text={''}
                          />,
 
-                         /*
+           
                          <Button
                          color={Button.Colors.BRAND}
                          text={'Copy Emote as Image'}
                          size={Button.Sizes.SMALL}
                          onPress={() => {
                           fetchImage(emojiNode.src, (emoteUrl) => {
-                           
+                            Clipboard.setImage(emoteUrl.split(',')[1]);
                          })
                          showToast("Copied Emote as image!");
                            LazyActionSheet.hideActionSheet();
                          }}
                        />,
- */
-
-                        
-                         <Button
-                         color={Button.Colors.BRAND}
-                         text={'Save Emote'}
-                         size={Button.Sizes.SMALL}
-                         onPress={() => {
-                            downloadMediaAsset(emojiNode.src, !emojiNode.src.includes(".gif") ? 0 : 1);
-                          showToast("Downloaded Emote to camera roll!");
-                           LazyActionSheet.hideActionSheet();
-                         }}
-                       />,
+ 
 
                        <Text
                        text={''}
                        />,
+  
  
 
                          <Button
@@ -138,8 +127,24 @@ const EmotesPlus: Plugin = {
                              name: 'Clone Emote'})
                              LazyActionSheet.hideActionSheet();
                               }}
-                         />
+                         />,
+
+                         <Button
+                         color={Button.Colors.BRAND}
+                         text={'Emote Details'}
+                         size={Button.Sizes.SMALL}
+                         onPress={() => {
+                           LazyActionSheet.hideActionSheet();
+                           Navigation.push(Page, { component: () =>  
+                            <ScrollView>
+                              <Text> text={'Emote Name: WIP Have to see how this looks first'} </Text>
+                            </ScrollView>,
+                             name: 'Emote Details'})
+                         }}
+                       />,
                          );
+
+                         
                      })
                  })
              })
