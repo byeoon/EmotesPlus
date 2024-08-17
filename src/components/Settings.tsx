@@ -42,6 +42,8 @@ function versionHandler() {
 
 export function updateCheck() {
   if(manifest.version.toString() < checkUpdate().toString()) {
+    console.log(manifest.version.toString());
+    console.log(checkUpdate().toString());
       console.log("EmotesPlus is running an outdated version and it is recommended to update.");
       showDialog();
   }
