@@ -14,6 +14,7 @@ import Settings from './components/Settings';
 
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
+const ClipboardImage = getByProps('setImage');
 const Patcher = create('EmotesPlus');
 const { default: Button } = getByProps('ButtonColors', 'ButtonSizes');
 const Permissions = Constants.Permissions
@@ -75,7 +76,7 @@ const EmotesPlus: Plugin = {
                          size={Button.Sizes.SMALL}
                          onPress={() => {
                           fetchImage(emojiNode.src, (emoteUrl) => {
-                            Clipboard.setImage(emoteUrl.split(',')[1]);
+                            ClipboardImage.setImage(emoteUrl.split(',')[1]);
                          })
                          showToast("Copied Emote as image!");
                            LazyActionSheet.hideActionSheet();
@@ -137,7 +138,9 @@ const EmotesPlus: Plugin = {
                            LazyActionSheet.hideActionSheet();
                            Navigation.push(Page, { component: () =>  
                             <ScrollView>
-                              <Text> text={'Emote Name: WIP Have to see how this looks first'} </Text>
+                              <Text> text={`Emote Name:${emojiNode.alt}`} </Text>
+                              <Text> text={`Emote ID:${emojiNode.id}`} </Text>
+                              <Text> text={`Emote Source:${emojiNode.src}`} </Text>
                             </ScrollView>,
                              name: 'Emote Details'})
                          }}
