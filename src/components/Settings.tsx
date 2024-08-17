@@ -1,15 +1,26 @@
 import { FormRow, View, ScrollView, Text, FormSwitch, Image, FormDivider } from "enmity/components";
 import { SettingsStore } from "enmity/api/settings";
 import { Constants, React, StyleSheet, Toasts } from "enmity/metro/common";
+import { getByProps } from 'enmity/metro';
 import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
+import {getIDByName} from "enmity/api/assets";
 
+const Clipboard = getByProps('setString');
 async function checkUpdate()
 {
   const resp = await fetch("https://raw.githubusercontent.com/byeoon/EmotesPlus/main/version.json");
   const content = await resp.json();
   return content.version;
 }
+
+function showToast(text) {
+  Toasts.open({
+     content: text,
+     icon: getIDByName('WarningIcon')
+  })
+}
+
 
 function versionHandler() {
   const [version, setVersion] = React.useState<string>();
@@ -21,9 +32,10 @@ function versionHandler() {
   return version
 }
 
-function updateCheck() {
+export function updateCheck() {
   if(manifest.version.toString() < checkUpdate().toString()) {
-      console.log("You may want to update EmotesPlus.");
+      console.log("EmotesPlus is running an outdated version and it is recommended to update.");
+        showToast("You are running an outdated version of EmotesPlus! Please re-install to get the latest update.");
   }
 }
 
@@ -109,7 +121,18 @@ export default ({ settings }: SettingsProps) => {
           label="Open GitHub Repository"
           icon="ic_arrow_right"
           onPress={() => 
-            updateCheck()
+            Linking.openURL("https://github.com/byeoon/EmotesPlus")
+            
+          }
+      />
+        <FormDivider />
+        <FormRow
+          label="Copy Plugin URL"
+          icon="ic_arrow_right"
+          onPress={() => {
+            Clipboard.setString("https://raw.githubusercontent.com/byeoon/EmotesPlus/main/dist/EmotesPlus.js");
+            showToast("Copied URL!");
+          }
           }
       />
       <Text style={styles.tab}>Changelog: </Text>

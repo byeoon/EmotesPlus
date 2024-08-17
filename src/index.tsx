@@ -11,6 +11,7 @@ import {GuildsStore, PermissionsStore, EmoteUploader, downloadMediaAsset} from "
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
+import { updateCheck } from './components/Settings';
 
 const LazyActionSheet = getByProps("openLazy", "hideActionSheet");
 const Clipboard = getByProps('setString');
@@ -30,6 +31,8 @@ const EmotesPlus: Plugin = {
    ...manifest,
 
    onStart() {
+    updateCheck(); // can't forget to check for updates!
+    
       const unpatchOpenLazy = Patcher.before(LazyActionSheet, 'openLazy', (_, [component, key]) => {
          if (key !== 'MessageEmojiActionSheet') return;
          unpatchOpenLazy();
