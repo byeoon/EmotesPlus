@@ -1,6 +1,6 @@
 import { FormRow, View, ScrollView, Text, FormSwitch, Image, FormDivider } from "enmity/components";
 import { SettingsStore } from "enmity/api/settings";
-import { Constants, React, StyleSheet, Toasts } from "enmity/metro/common";
+import { Constants, React, StyleSheet, Dialog, Toasts } from "enmity/metro/common";
 import { getByProps } from 'enmity/metro';
 import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
@@ -14,10 +14,18 @@ async function checkUpdate()
   return content.version;
 }
 
+function showDialog() {
+  Dialog.show({
+    title: "EmotesPlus",
+    body: "You are running an outdated version of EmotesPlus! Please re-install to get the latest update.",
+    confirmText: "Okay"
+})
+}
+
 function showToast(text) {
   Toasts.open({
      content: text,
-     icon: getIDByName('WarningIcon')
+     icon: getIDByName('Check')
   })
 }
 
@@ -35,7 +43,7 @@ function versionHandler() {
 export function updateCheck() {
   if(manifest.version.toString() < checkUpdate().toString()) {
       console.log("EmotesPlus is running an outdated version and it is recommended to update.");
-        showToast("You are running an outdated version of EmotesPlus! Please re-install to get the latest update.");
+      showDialog();
   }
 }
 
