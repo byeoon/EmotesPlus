@@ -89,12 +89,14 @@ const EmotesPlus: Plugin = {
                          text={'Save Emote'}
                          size={Button.Sizes.SMALL}
                          onPress={() => {
-                          fetchImage(emojiNode.src, (emoteUrl) => {
                             downloadMediaAsset(emojiNode.src, !emojiNode.src.includes(".gif") ? 0 : 1);
-                         })
-                         showToast("Downloaded Emote to camera roll!");
+                          showToast("Downloaded Emote to camera roll!");
                            LazyActionSheet.hideActionSheet();
                          }}
+                       />,
+
+                       <Text
+                       text={''}
                        />,
  
 
