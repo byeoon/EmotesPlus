@@ -7,7 +7,7 @@ import manifest from '../manifest.json';
 import {get} from "enmity/api/settings";
 import Page from "./components/Page";
 import fetchImage from '../TODO/GetDataURL';
-import {GuildsStore, PermissionsStore, EmoteUploader} from "./components/EmoteClone";
+import {GuildsStore, PermissionsStore, EmoteUploader, downloadMediaAsset} from "./components/EmoteClone";
 import findInReactTree from 'enmity/utilities/findInReactTree';
 import {getIDByName} from "enmity/api/assets";
 import Settings from './components/Settings';
@@ -82,6 +82,22 @@ const EmotesPlus: Plugin = {
                          }}
                        />,
  */
+
+                        
+                         <Button
+                         color={Button.Colors.BRAND}
+                         text={'Save Emote'}
+                         size={Button.Sizes.SMALL}
+                         onPress={() => {
+                          fetchImage(emojiNode.src, (emoteUrl) => {
+                            downloadMediaAsset(emojiNode.src, !emojiNode.src.includes(".gif") ? 0 : 1);
+                         })
+                         showToast("Downloaded Emote to camera roll!");
+                           LazyActionSheet.hideActionSheet();
+                         }}
+                       />,
+ 
+
                          <Button
                            color={Button.Colors.BRAND}
                            text={'Clone to Server'}
@@ -128,6 +144,7 @@ const EmotesPlus: Plugin = {
          })
      }) 
     },
+    //  
 
    onStop() {
       Patcher.unpatchAll();

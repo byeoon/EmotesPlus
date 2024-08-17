@@ -1,6 +1,6 @@
 {
    "name": "EmotesPlus",
-   "version": "1.0.0",
+   "version": "1.1.0",
    "description": "Enhanced mobile emote management.",
    "authors": [
       {
@@ -11,6 +11,7 @@
    "color": "#00007d",
    "sourceUrl": "https://github.com/byeoon/EmotesPlus",
    "changelog": [
-      "\n1.0.0: The actual, first, initial release of EmotesPlus!"
+      "\n1.0.0: The actual, first, initial release of EmotesPlus!\n",
+      "1.1.0: Added the ability to download emotes to the camera roll."
    ]
 }
