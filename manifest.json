@@ -12,6 +12,6 @@
    "sourceUrl": "https://github.com/byeoon/EmotesPlus",
    "changelog": [
       "\n1.0.0: The first initial release of EmotesPlus!\n",
-      "1.1.0: Added the ability to copy emotes as images, and update notifier.\n"
+      "1.1.0: Added the ability to copy emotes as images, and button to copy plugin link in settings.\n"
    ]
 }
