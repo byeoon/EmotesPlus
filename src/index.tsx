@@ -83,13 +83,10 @@ const EmotesPlus: Plugin = {
                          }}
                        />,
  
-
                        <Text
                        text={''}
                        />,
   
- 
-
                          <Button
                            color={Button.Colors.BRAND}
                            text={'Clone to Server'}
@@ -129,22 +126,6 @@ const EmotesPlus: Plugin = {
                              LazyActionSheet.hideActionSheet();
                               }}
                          />,
-
-                         <Button
-                         color={Button.Colors.BRAND}
-                         text={'Emote Details'}
-                         size={Button.Sizes.SMALL}
-                         onPress={() => {
-                           LazyActionSheet.hideActionSheet();
-                           Navigation.push(Page, { component: () =>  
-                            <ScrollView>
-                              <Text> text={`Emote Name:${emojiNode.alt}`} </Text>
-                              <Text> text={`Emote ID:${emojiNode.id}`} </Text>
-                              <Text> text={`Emote Source:${emojiNode.src}`} </Text>
-                            </ScrollView>,
-                             name: 'Emote Details'})
-                         }}
-                       />,
                          );
 
                          

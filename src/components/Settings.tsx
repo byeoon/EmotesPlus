@@ -1,7 +1,6 @@
 import { FormRow, View, ScrollView, Text, FormSwitch, Image, FormDivider } from "enmity/components";
 import { SettingsStore } from "enmity/api/settings";
 import { Constants, React, StyleSheet, Toasts } from "enmity/metro/common";
-import { getByProps } from "enmity/metro";
 import { Linking } from "enmity/metro/common";
 import manifest from "../../manifest.json";
 
@@ -22,9 +21,20 @@ function versionHandler() {
   return version
 }
 
+function updateCheck() {
+  if(manifest.version.toString() < checkUpdate().toString()) {
+      console.log("You may want to update EmotesPlus.");
+  }
+}
+
 interface SettingsProps {
   settings: SettingsStore;
 }
+
+
+   
+   
+
 
 // settings style inspired by mafu
 export default ({ settings }: SettingsProps) => {
@@ -98,7 +108,9 @@ export default ({ settings }: SettingsProps) => {
       <FormRow
           label="Open GitHub Repository"
           icon="ic_arrow_right"
-          onPress={() => Linking.openURL("https://github.com/byeoon/EmotesPlus")}
+          onPress={() => 
+            updateCheck()
+          }
       />
       <Text style={styles.tab}>Changelog: </Text>
       <Text style={styles.pluginAuthor}> {manifest.changelog} </Text>
